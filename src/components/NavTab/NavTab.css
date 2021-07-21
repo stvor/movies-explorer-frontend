@@ -1,0 +1,17 @@
+.nav-tab {
+  height: 66px;
+  background-color: #F5F5F5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.nav-tab__link {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  text-decoration-line: underline;
+  color: #000000;
+}
