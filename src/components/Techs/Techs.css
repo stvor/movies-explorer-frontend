@@ -43,7 +43,7 @@
 .techs__list {
   margin: 0;
   padding: 100px 0 0 0;
-  list-style-type: none;
+  list-style: none;
   display: flex;
   justify-content: center;
   gap: 10px;
