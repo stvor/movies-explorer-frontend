@@ -12,27 +12,29 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 import './App.css';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+
   return (
     <div className="page">
       <div className="page__container">
         <Switch>
           <Route exact path="/">
-            <Header />
+            <Header isLoggedIn={isLoggedIn} isHeaderColored={true} />
             <Main />
             <Footer />
           </Route>
           <Route path="/movies">
-            <Header />
+            <Header isLoggedIn={isLoggedIn} isHeaderColored={false} />
             <Movies />
             <Footer />
           </Route>
           <Route path="/saved-movies">
-            <Header />
+            <Header isLoggedIn={isLoggedIn} isHeaderColored={false} />
             <SavedMovies />
             <Footer />
           </Route>
           <Route path="/profile">
-            <Header />
+            <Header isLoggedIn={isLoggedIn} isHeaderColored={false} />
             <Profile />
           </Route>
           <Route path="/signin">
