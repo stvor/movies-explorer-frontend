@@ -15,18 +15,24 @@ function App() {
   return (
     <div className="page">
       <div className="page__container">
-        <Header />
         <Switch>
           <Route exact path="/">
+            <Header />
             <Main />
+            <Footer />
           </Route>
           <Route path="/movies">
+            <Header />
             <Movies />
+            <Footer />
           </Route>
           <Route path="/saved-movies">
+            <Header />
             <SavedMovies />
+            <Footer />
           </Route>
           <Route path="/profile">
+            <Header />
             <Profile />
           </Route>
           <Route path="/signin">
@@ -39,8 +45,6 @@ function App() {
             <PageNotFound />
           </Route>
         </Switch>
-        <Footer />
-
       </div>
     </div>
   );
