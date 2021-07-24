@@ -7,7 +7,9 @@ function Register() {
   return (
     <section className="register">
       <form className="form" name="register" action="#" noValidate>
-        <img className="form__logo" src={Logo} alt="Логотип сайта" />
+        <Link exact to="/">
+          <img className="form__logo" src={Logo} alt="Логотип сайта" />
+        </Link>
         <h1 className="form__title">Добро пожаловать!</h1>
 
         <label className="form__label" for="name-input">Имя</label>

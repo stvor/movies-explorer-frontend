@@ -7,7 +7,9 @@ function Login() {
   return (
     <section className="login">
       <form className="form" name="login" action="#" noValidate>
-        <img className="form__logo" src={Logo} alt="Логотип сайта" />
+        <Link exact to="/">
+          <img className="form__logo" src={Logo} alt="Логотип сайта" />
+        </Link>
         <h1 className="form__title">Рады видеть!</h1>
 
         <label className="form__label" for="email-input">E-mail</label>
