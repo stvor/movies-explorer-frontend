@@ -12,7 +12,7 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 import './App.css';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   return (
     <div className="page">

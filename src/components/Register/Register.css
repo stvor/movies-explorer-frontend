@@ -1,0 +1,98 @@
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form__logo {
+  width: 38px;
+}
+
+.form__title {
+  margin: 0;
+  padding: 40px 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+}
+
+.form__label {
+  padding-bottom: 5px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A0A0A0;
+}
+
+.form__input {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  border: none;
+  padding: 0 0 10px 0;
+  border-bottom: 1px solid #E8E8E8;
+}
+
+.form__input:focus {
+  outline: none;
+  border-bottom: 1px solid #FF6838;
+}
+
+.form__input-error {
+  padding: 6px 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: #EE3465;
+}
+
+.form__submit {
+  margin-top: 130px;
+  height: 50px;
+  border: none;
+  background-color: #FF6838;
+  border-radius: 3px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FFFFFF;
+}
+
+.form__sign-in-wrap {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.form__sign-in-question {
+  margin: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #A0A0A0;
+}
+
+.form__sign-in-link {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FF6838;
+  text-decoration: none;
+}
