@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Navigation.css';
 
 function Navigation({ isLoggedIn, isHeaderColored }) {
@@ -13,11 +13,11 @@ function Navigation({ isLoggedIn, isHeaderColored }) {
         ) : ''}
       <div className="navigation__user">
         {isLoggedIn ? (
-          <NavLink className="navigation__user-profile" to="/profile">Аккаунт</NavLink>
+          <Link className="navigation__user-profile" to="/profile">Аккаунт</Link>
         ) : (
           <>
-            <NavLink className="navigation__user-register" to="/signup">Регистрация</NavLink>
-            <NavLink className="navigation__user-login" to="/signin">Войти</NavLink>
+            <Link className="navigation__user-register" to="/signup">Регистрация</Link>
+            <Link className="navigation__user-login" to="/signin">Войти</Link>
           </>
         )}
       </div>
