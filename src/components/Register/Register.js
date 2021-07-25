@@ -7,7 +7,7 @@ function Register() {
   return (
     <section className="register">
       <form className="form" name="register" action="#" noValidate>
-        <Link exact to="/">
+        <Link to="/">
           <img className="form__logo" src={Logo} alt="Логотип сайта" />
         </Link>
         <h1 className="form__title">Добро пожаловать!</h1>

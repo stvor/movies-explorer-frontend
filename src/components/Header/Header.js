@@ -8,7 +8,7 @@ function Header({ isLoggedIn, isHeaderColored }) {
   return (
     <header className={`header ${isHeaderColored ? "header_colored" : ""}`}>
       <div className="header__wrap">
-        <Link exact to="/">
+        <Link to="/">
           <img src={Logo} alt="Логотип сайта" />
         </Link>
         <Navigation isLoggedIn={isLoggedIn} isHeaderColored={isHeaderColored} />
