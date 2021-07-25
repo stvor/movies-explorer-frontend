@@ -1,9 +1,21 @@
 import React from 'react';
 import './MoviesCardList.css';
+import MoviesCard from '../MoviesCard/MoviesCard';
 
 function MoviesCardList() {
   return (
-    <h2>MoviesCardList</h2>
+    <section className="movies-card-list">
+      <ul className="movies-card-list__list">
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+      </ul>
+      <button className="movies-card-list__more-button">Ещё</button>
+    </section>
   );
 }
 
