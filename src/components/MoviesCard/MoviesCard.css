@@ -35,16 +35,23 @@
   color: #A0A0A0;
 }
 
-.movies-card__save {
+.movies-card__button {
   padding: 0;
   width: 30px;
   height: 30px;
   border: none;
-  background-image: url("../../images/save-button.svg");
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
   flex-shrink: 0;
+}
+
+.movies-card__button_type_save {
+  background-image: url("../../images/save-button.svg");
+}
+
+.movies-card__button_type_delete {
+  background-image: url("../../images/delete-button.svg");
 }
 
 .movies-card__cover {
