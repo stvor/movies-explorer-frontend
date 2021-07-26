@@ -1,5 +1,5 @@
 .portfolio {
-  padding: 50px 70px 125px;
+  padding: 50px 70px 106px;
 }
 
 .portfolio__title {
@@ -13,7 +13,8 @@
 
 .portfolio__links-list {
   margin: 0;
-  padding: 30px 0 0 0;
+  padding: 0;
+  padding-top: 30px;
   list-style: none;
 }
 
@@ -36,4 +37,37 @@
   letter-spacing: -0.04em;
   color: #000000;
   text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .portfolio {
+    padding: 0 50px 71px;
+  }
+
+  .portfolio__link {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .portfolio {
+    padding: 0 14px 51px;
+  }
+
+  .portfolio__title {
+    font-size: 14px;
+  }
+
+  .portfolio__links-list {
+    padding-top: 20px;
+  }
+
+  .portfolio__link {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .portfolio__link-icon {
+    width: 11px;
+  }
 }
