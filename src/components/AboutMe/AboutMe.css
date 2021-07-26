@@ -21,6 +21,11 @@
   gap: 70px;
 }
 
+.about-me__info {
+  display: flex;
+  flex-direction: column;
+}
+
 .about-me__name {
   margin: 0;
   font-style: normal;
@@ -54,7 +59,8 @@
 
 .about-me__links-list {
   margin: 0;
-  padding: 40px 0 0 0;
+  margin-top: auto;
+  padding: 0;
   list-style: none;
   display: flex;
   justify-content: start;
@@ -72,6 +78,7 @@
 
 .about-me__photo {
   width: 270px;
+  height: 327px;
   object-fit: cover;
   border-radius: 10px;
 }
@@ -96,6 +103,11 @@
     padding-top: 20px;
     font-size: 12px;
     line-height: 18px;
+  }
+
+  .about-me__photo {
+    width: 255px;
+    height: 307px;
   }
 }
 
@@ -123,7 +135,7 @@
 
   .about-me__photo {
     width: 100%;
-    height: auto;
+    height: 352px;
   }
 
   .about-me__profile {
@@ -140,5 +152,6 @@
 
   .about-me__links-list {
     gap: 26px;
+    margin-top: 40px;
   }
 }
