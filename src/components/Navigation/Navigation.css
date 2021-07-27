@@ -68,3 +68,21 @@
   color: #000000;
   text-decoration: none;
 }
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 320px) {
+  .navigation__user {
+    gap: 14px;
+  }
+
+  .navigation__user-register {
+    font-size: 10px;
+  }
+
+  .navigation__user-login {
+    font-size: 10px;
+  }
+}
