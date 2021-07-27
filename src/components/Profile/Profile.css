@@ -14,7 +14,7 @@
 
 .profile-form__title {
   margin: 0;
-  padding: 74px 0 110px 0;
+  padding: 74px 0 110px;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -78,4 +78,30 @@
   font-size: 13px;
   line-height: 16px;
   color: #EE3465;
+}
+
+@media screen and (max-width: 768px) {
+  .profile-form__title {
+    padding: 236px 0 96px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .profile {
+    padding: 0 30px;
+  }
+
+  .profile-form__title {
+    padding: 70px 0 80px;
+  }
+
+  .profile-form__submit {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .profile__logout {
+    font-size: 12px;
+    line-height: 15px;
+  }
 }
