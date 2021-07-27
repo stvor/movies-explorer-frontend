@@ -96,3 +96,36 @@
   color: #FF6838;
   text-decoration: none;
 }
+
+@media screen and (max-width: 320px) {
+  .register {
+    padding: 0 30px;
+    align-items: start;
+  }
+
+  .form__logo {
+    margin: 56px auto 0;
+    display: block;
+  }
+
+  .form__title {
+    text-align: center;
+    padding: 50px 0 80px;
+  }
+
+  .form__submit {
+    margin-top: 50px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .form__sign-in-question {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .form__sign-in-link {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
