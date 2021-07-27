@@ -69,8 +69,36 @@
   text-decoration: none;
 }
 
-@media screen and (max-width: 768px) {
+.navigation__menu-open {
+  display: none;
+}
 
+.navigation__mobile-menu {
+  display: none;
+}
+
+.navigation__mobile-menu_is-open {
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 100px;
+  right: 0;
+  background-color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation__site {
+    display: none;
+  }
+
+  .navigation__user-profile_place_header {
+    display: none;
+  }
+
+  .navigation__menu-open {
+    display: block;
+  }
 }
 
 @media screen and (max-width: 320px) {
@@ -84,5 +112,9 @@
 
   .navigation__user-login {
     font-size: 10px;
+  }
+
+  .navigation__mobile-menu_is-open {
+    left: 0;
   }
 }
