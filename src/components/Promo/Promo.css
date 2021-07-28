@@ -42,6 +42,7 @@
   }
 
   .promo__title {
+    padding: 0 18px;
     font-size: 31px;
     line-height: 39px;
   }
