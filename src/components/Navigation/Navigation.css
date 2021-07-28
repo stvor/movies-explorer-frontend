@@ -206,7 +206,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 530px) {
   .navigation {
     gap: 16px;
   }

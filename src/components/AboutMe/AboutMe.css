@@ -116,11 +116,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
-  .about-me {
-    padding: 70px 14px;
-  }
-
+@media screen and (max-width: 640px) {
   .about-me__title {
     padding-bottom: 28px;
     font-size: 18px;
@@ -158,5 +154,11 @@
   .about-me__links-list {
     gap: 26px;
     margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  .about-me {
+    padding: 70px 14px;
   }
 }

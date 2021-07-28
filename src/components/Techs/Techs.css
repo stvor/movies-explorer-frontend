@@ -30,7 +30,7 @@
 .techs__paragraph {
   margin: 0 auto;
   padding-top: 26px;
-  max-width: 460px;
+  max-width: 530px;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -93,7 +93,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 530px) {
   .techs {
     padding: 70px 18px;
     background-color: #FFFFFF;
