@@ -4,6 +4,7 @@ import CardCover from '../../images/card-cover.png';
 import { Route, Switch } from 'react-router-dom';
 
 function MoviesCard() {
+  const [isSaved, setIsSaved] = React.useState(true);
   return (
     <li className="movies-card">
       <div className="movies-card__header">
@@ -13,7 +14,7 @@ function MoviesCard() {
         </div>
         <Switch>
           <Route path="/movies">
-            <button className="movies-card__button movies-card__button_type_save" type="button"></button>
+            <button className={`movies-card__button movies-card__button_type_save ${isSaved ? "movies-card__button_type_save-active" : ""}`} type="button"></button>
           </Route>
           <Route path="/saved-movies">
             <button className="movies-card__button movies-card__button_type_delete" type="button"></button>

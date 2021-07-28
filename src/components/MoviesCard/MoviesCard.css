@@ -55,6 +55,10 @@
   background-image: url("./../../images/save-button.svg");
 }
 
+.movies-card__button_type_save-active {
+  background-image: url("./../../images/save-button-active.svg");
+}
+
 .movies-card__button_type_delete {
   background-image: url("./../../images/delete-button.svg");
 }
