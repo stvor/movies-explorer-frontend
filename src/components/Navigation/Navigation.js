@@ -24,7 +24,7 @@ function Navigation({ isLoggedIn, isHeaderColored }) {
             <Link className="navigation__user-profile" to="/profile">Аккаунт</Link>
           </div>
 
-          <button className="navigation__menu-open" onClick={handleMenuOpen}></button>
+          <button className={`navigation__menu-open ${isHeaderColored ? "navigation__menu-open_white" : ""}`} onClick={handleMenuOpen}></button>
         </>
       ) : (
         <>

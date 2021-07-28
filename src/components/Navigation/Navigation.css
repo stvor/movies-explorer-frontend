@@ -70,7 +70,7 @@
 }
 
 .navigation__menu-open {
-  background-image: url("./../../images/open-menu-button.svg");
+  background-image: url("./../../images/open-menu-button-black.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
@@ -79,6 +79,10 @@
   height: 28px;
   padding: 0;
   display: none;
+}
+
+.navigation__menu-open_white {
+  background-image: url("./../../images/open-menu-button-white.svg");
 }
 
 .mobile-menu {
