@@ -6,18 +6,18 @@ import Logo from '../../images/logo.svg';
 function Login() {
   return (
     <section className="login">
-      <form className="form" name="login" action="#" noValidate>
+      <form className="form" name="login" action="#" >
         <Link to="/">
           <img className="form__logo" src={Logo} alt="Логотип сайта" />
         </Link>
         <h1 className="form__title">Рады видеть!</h1>
 
         <label className="form__label" for="email-input">E-mail</label>
-        <input id="email-input" type="text" name="email" placeholder="E-mail" className="form__input form__input_type_email" />
+        <input id="email-input" type="text" name="email" placeholder="E-mail" className="form__input form__input_type_email" required />
         <span className="email-input-error form__input-error">Что-то пошло не так...</span>
 
         <label className="form__label" for="password-input">Пароль</label>
-        <input id="password-input" type="password" name="password" placeholder="Пароль" className="form__input form__input_type_password" />
+        <input id="password-input" type="password" name="password" placeholder="Пароль" className="form__input form__input_type_password" required />
         <span className="password-input-error form__input-error">Что-то пошло не так...</span>
 
         <button type="submit" className="form__submit">Войти</button>
