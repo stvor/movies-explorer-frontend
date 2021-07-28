@@ -24,16 +24,19 @@
 }
 
 .profile-form__label {
-  padding: 16px 0;
   display: flex;
   justify-content: space-between;
   gap: 40px;
+  border-bottom: 1px solid #E8E8E8;
+}
+
+.profile-form__label-text {
+  padding: 16px 0;
   font-style: normal;
   font-weight: 500;
   font-size: 11px;
   line-height: 13px;
   color: #000000;
-  border-bottom: 1px solid #E8E8E8;
 }
 
 .profile-form__label:last-of-type {
