@@ -14,12 +14,12 @@
   display: inline-block;
   width: 50px;
   height: 33px;
-  background-image: url("../../images/checkbox-off.svg");
+  background-image: url("./../../images/checkbox-off.svg");
   background-repeat: no-repeat;
 }
 
 .filter-checkbox__invisible-checkbox:checked + .filter-checkbox__pseudo-checkbox {
-  background-image: url("../../images/checkbox-on.svg");
+  background-image: url("./../../images/checkbox-on.svg");
 }
 
 .filter-checkbox-label-text {
