@@ -1,0 +1,25 @@
+.header {
+  padding: 18px 70px;
+}
+
+.header_colored {
+  background-color: #465DFF;
+}
+
+.header__wrap {
+  display: flex;
+  align-items: center;
+  gap: 44px;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 18px 30px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    padding: 18px 14px;
+  }
+}
