@@ -9,9 +9,11 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import PageNotFound from '../PageNotFound/PageNotFound';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import './App.css';
 
 function App() {
+  // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
 
   return (
@@ -23,20 +25,21 @@ function App() {
             <Main />
             <Footer />
           </Route>
-          <Route path="/movies">
-            <Header isLoggedIn={isLoggedIn} isHeaderColored={false} />
-            <Movies />
-            <Footer />
-          </Route>
-          <Route path="/saved-movies">
-            <Header isLoggedIn={isLoggedIn} isHeaderColored={false} />
-            <SavedMovies />
-            <Footer />
-          </Route>
-          <Route path="/profile">
-            <Header isLoggedIn={isLoggedIn} isHeaderColored={false} />
-            <Profile />
-          </Route>
+          <ProtectedRoute
+            path="/movies"
+            component={Movies}
+            isLoggedIn={isLoggedIn}
+          />
+          <ProtectedRoute
+            path="/saved-movies"
+            component={SavedMovies}
+            isLoggedIn={isLoggedIn}
+          />
+          <ProtectedRoute
+            path="/profile"
+            component={Profile}
+            isLoggedIn={isLoggedIn}
+          />
           <Route path="/signin">
             <Login />
           </Route>
