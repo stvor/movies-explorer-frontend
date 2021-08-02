@@ -1,10 +1,13 @@
 import React from 'react';
 import './MoviesCard.css';
 import CardCover from '../../images/card-cover.png';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { Route, Switch } from 'react-router-dom';
 
 function MoviesCard() {
   const [isSaved, setIsSaved] = React.useState(true);
+  const currentUser = React.useContext(CurrentUserContext);
+
   return (
     <li className="movies-card">
       <div className="movies-card__header">

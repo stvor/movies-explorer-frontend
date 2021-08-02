@@ -10,48 +10,53 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './App.css';
 
 function App() {
   // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
 
+  const [currentUser, setCurrentUser] = React.useState({});
+
   return (
-    <div className="page">
-      <div className="page__container">
-        <Switch>
-          <Route exact path="/">
-            <Header isLoggedIn={isLoggedIn} isHeaderColored={true} />
-            <Main />
-            <Footer />
-          </Route>
-          <ProtectedRoute
-            path="/movies"
-            component={Movies}
-            isLoggedIn={isLoggedIn}
-          />
-          <ProtectedRoute
-            path="/saved-movies"
-            component={SavedMovies}
-            isLoggedIn={isLoggedIn}
-          />
-          <ProtectedRoute
-            path="/profile"
-            component={Profile}
-            isLoggedIn={isLoggedIn}
-          />
-          <Route path="/signin">
-            <Login />
-          </Route>
-          <Route path="/signup">
-            <Register />
-          </Route>
-          <Route path="*">
-            <PageNotFound />
-          </Route>
-        </Switch>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="page">
+        <div className="page__container">
+          <Switch>
+            <Route exact path="/">
+              <Header isLoggedIn={isLoggedIn} isHeaderColored={true} />
+              <Main />
+              <Footer />
+            </Route>
+            <ProtectedRoute
+              path="/movies"
+              component={Movies}
+              isLoggedIn={isLoggedIn}
+            />
+            <ProtectedRoute
+              path="/saved-movies"
+              component={SavedMovies}
+              isLoggedIn={isLoggedIn}
+            />
+            <ProtectedRoute
+              path="/profile"
+              component={Profile}
+              isLoggedIn={isLoggedIn}
+            />
+            <Route path="/signin">
+              <Login />
+            </Route>
+            <Route path="/signup">
+              <Register />
+            </Route>
+            <Route path="*">
+              <PageNotFound />
+            </Route>
+          </Switch>
+        </div>
       </div>
-    </div>
+    </CurrentUserContext.Provider>
   );
 }
 

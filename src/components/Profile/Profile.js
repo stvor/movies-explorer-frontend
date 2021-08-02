@@ -1,7 +1,10 @@
 import React from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Profile.css';
 
 function Profile() {
+  const currentUser = React.useContext(CurrentUserContext);
+
   return (
     <section className="profile">
       <form className="profile-form" name="login" action="#" >
