@@ -121,8 +121,4 @@
       padding-top: 50px;
       flex-wrap: wrap;
     }
-
-    .techs__list-item:last-of-type {
-      margin-right: 94px;
-    }
 }
