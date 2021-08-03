@@ -15,8 +15,8 @@ import mainApi from '../../utils/MainApi';
 import './App.css';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  // const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+  // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
 
   const [currentUser, setCurrentUser] = React.useState({});
 
@@ -85,7 +85,6 @@ function App() {
             <Route exact path="/">
               <Header isLoggedIn={isLoggedIn} isHeaderColored={true} />
               <Main />
-              <Footer />
             </Route>
             <ProtectedRoute
               path="/movies"
@@ -114,6 +113,7 @@ function App() {
               <PageNotFound />
             </Route>
           </Switch>
+          <Footer />
         </div>
       </div>
     </CurrentUserContext.Provider>
