@@ -15,8 +15,8 @@ import mainApi from '../../utils/MainApi';
 import './App.css';
 
 function App() {
-  // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = React.useState(true);
 
   const [currentUser, setCurrentUser] = React.useState({});
 
@@ -81,9 +81,9 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className="page__container">
+          <Header isLoggedIn={isLoggedIn} />
           <Switch>
             <Route exact path="/">
-              <Header isLoggedIn={isLoggedIn} isHeaderColored={true} />
               <Main />
             </Route>
             <ProtectedRoute
