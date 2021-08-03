@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -11,13 +11,28 @@ import Register from '../Register/Register';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import mainApi from '../../utils/MainApi';
 import './App.css';
 
 function App() {
-  // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = React.useState(true);
 
   const [currentUser, setCurrentUser] = React.useState({});
+
+  const history = useHistory();
+
+  function handleLogin(loginData) {
+    mainApi.signIn(loginData)
+      .then(res => {
+        setIsLoggedIn(true);
+        localStorage.setItem('jwt', res.token);
+        history.push('/movies');
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -45,7 +60,7 @@ function App() {
               isLoggedIn={isLoggedIn}
             />
             <Route path="/signin">
-              <Login />
+              <Login onLogin={handleLogin} />
             </Route>
             <Route path="/signup">
               <Register />

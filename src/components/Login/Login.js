@@ -3,10 +3,26 @@ import { Link } from 'react-router-dom';
 import './Login.css';
 import Logo from '../../images/logo.svg';
 
-function Login() {
+function Login({ onLogin }) {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  function handleEmailChange(evt) {
+    setEmail(evt.target.value);
+  }
+
+  function handlePasswordChange(evt) {
+    setPassword(evt.target.value);
+  }
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    onLogin({ email, password });
+  }
+
   return (
     <section className="login">
-      <form className="form" name="login" action="#" >
+      <form className="form" onSubmit={handleSubmit} name="login" action="#" >
         <Link to="/">
           <img className="form__logo" src={Logo} alt="Логотип сайта" />
         </Link>
@@ -14,13 +30,13 @@ function Login() {
 
         <label className="form__label">
           <span className="form__label-text">E-mail</span>
-          <input id="email-input" type="text" name="email" placeholder="E-mail" className="form__input form__input_type_email" required />
+          <input value={email || ''} onChange={handleEmailChange} id="email-input" type="text" name="email" placeholder="E-mail" className="form__input form__input_type_email" required />
           <span className="email-input-error form__input-error">Что-то пошло не так...</span>
         </label>
 
         <label className="form__label">
           <span className="form__label-text">Пароль</span>
-          <input id="password-input" type="password" name="password" placeholder="Пароль" className="form__input form__input_type_password" required />
+          <input value={password || ''} onChange={handlePasswordChange} id="password-input" type="password" name="password" placeholder="Пароль" className="form__input form__input_type_password" required />
           <span className="password-input-error form__input-error">Что-то пошло не так...</span>
         </label>
 
