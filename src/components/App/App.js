@@ -40,6 +40,7 @@ function App() {
       .then(res => {
         setIsLoggedIn(true);
         localStorage.setItem('jwt', res.token);
+        setCurrentUser({ email: loginData.email });
         history.push('/movies');
       })
       .catch(err => {
