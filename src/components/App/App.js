@@ -40,13 +40,42 @@ function App() {
       .then(res => {
         setIsLoggedIn(true);
         localStorage.setItem('jwt', res.token);
-        setCurrentUser({ email: loginData.email });
+        // setCurrentUser({ email: loginData.email });
         history.push('/movies');
       })
       .catch(err => {
         console.log(err)
       })
   }
+
+  function handleProfileEdit(userData) {
+    const jwt = localStorage.getItem('jwt');
+    mainApi.updateUser({ userData, jwt })
+      .then(() => console.log('Update profile success'))
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  function handleSignOut() {
+    setIsLoggedIn(false);
+    localStorage.removeItem('jwt');
+    history.push('/');
+  }
+
+  React.useEffect(() => {
+    if (isLoggedIn) {
+      const jwt = localStorage.getItem('jwt');
+      mainApi.getUser(jwt)
+        .then((userData) => {
+          setCurrentUser(userData);
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+
+  }, [isLoggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -72,6 +101,8 @@ function App() {
               path="/profile"
               component={Profile}
               isLoggedIn={isLoggedIn}
+              onProfileEdit={handleProfileEdit}
+              onSignOut={handleSignOut}
             />
             <Route path="/signin">
               <Login onLogin={handleLogin} />
