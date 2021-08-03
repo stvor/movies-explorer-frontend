@@ -22,6 +22,19 @@ function App() {
 
   const history = useHistory();
 
+  function handleRegister(registerData) {
+    mainApi.signUp(registerData)
+      .then(() => {
+        handleLogin({
+          email: registerData.email,
+          password: registerData.password,
+        });
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   function handleLogin(loginData) {
     mainApi.signIn(loginData)
       .then(res => {
@@ -63,7 +76,7 @@ function App() {
               <Login onLogin={handleLogin} />
             </Route>
             <Route path="/signup">
-              <Register />
+              <Register onRegister={handleRegister} />
             </Route>
             <Route path="*">
               <PageNotFound />
