@@ -3,29 +3,25 @@ import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import moviesApi from '../../utils/MoviesApi';
+import filterMoviesByQuery from '../../utils/filterByQuery';
 
 function Movies() {
-  const [allMovies, setAllMovies] = React.useState([]);
+  const [filteredMovies, setFilteredMovies] = React.useState([]);
 
-  // получить поисковый запрос
   function handleSearch(query) {
-
-    // запросить все фильмы
     moviesApi.getMovies()
       .then((data) => {
-        setAllMovies(data);
+        setFilteredMovies(filterMoviesByQuery(data, query))
       })
       .catch(err => {
         console.log(err)
       });
     }
-  // отфильтровать фильмы по запросу
-  // передать фильмы в MoviesCardList
 
   return (
     <section className="movies">
       <SearchForm onSearch={handleSearch}/>
-      <MoviesCardList movies={allMovies} />
+      <MoviesCardList movies={filteredMovies} />
     </section>
   );
 }
