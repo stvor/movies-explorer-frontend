@@ -12,15 +12,13 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import mainApi from '../../utils/MainApi';
-import moviesApi from '../../utils/MoviesApi';
 import './App.css';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  // const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+  // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
 
   const [currentUser, setCurrentUser] = React.useState({});
-  const [movies, setMovies] = React.useState([]);
 
   const history = useHistory();
 
@@ -42,7 +40,6 @@ function App() {
       .then(res => {
         setIsLoggedIn(true);
         localStorage.setItem('jwt', res.token);
-        // setCurrentUser({ email: loginData.email });
         history.push('/movies');
       })
       .catch(err => {
@@ -75,16 +72,7 @@ function App() {
         .catch(err => {
           console.log(err)
         });
-
-      moviesApi.getMovies()
-        .then(moviesData => {
-          setMovies(moviesData);
-        })
-        .catch(err => {
-          console.log(err)
-        });
     }
-
   }, [isLoggedIn]);
 
   return (
