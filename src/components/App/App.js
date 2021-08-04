@@ -12,6 +12,7 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import mainApi from '../../utils/MainApi';
+import moviesApi from '../../utils/MoviesApi';
 import './App.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
   // const [isLoggedIn, setIsLoggedIn] = React.useState(true);
 
   const [currentUser, setCurrentUser] = React.useState({});
+  const [movies, setMovies] = React.useState([]);
 
   const history = useHistory();
 
@@ -72,7 +74,15 @@ function App() {
         })
         .catch(err => {
           console.log(err)
+        });
+
+      moviesApi.getMovies()
+        .then(moviesData => {
+          setMovies(moviesData);
         })
+        .catch(err => {
+          console.log(err)
+        });
     }
 
   }, [isLoggedIn]);
