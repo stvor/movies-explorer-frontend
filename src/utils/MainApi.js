@@ -58,6 +58,40 @@ class MainApi {
     })
     .then(res => this._processingResponse(res));
   }
+
+  saveMovie({ movieData, jwt }) {
+    return fetch(`${this.url}/movies`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization" : `Bearer ${jwt}`,
+      },
+      body: JSON.stringify({
+        country: movieData.country,
+        director: movieData.director,
+        duration: movieData.duration,
+        year: movieData.year,
+        description: movieData.description,
+        image: movieData.image.url,
+        trailer: movieData.trailerLink,
+        nameRU: movieData.nameRU,
+        nameEN: movieData.nameEN,
+        thumbnail: movieData.image.formats.thumbnail.url,
+        movieId: movieData.id,
+      }),
+    })
+    .then(res => this._processingResponse(res));
+  }
+
+  deleteMovie({ movieId, jwt }) {
+    return fetch(`${this.url}/movies/${movieId}`, {
+      method: 'DELETE',
+      headers: {
+        "Authorization" : `Bearer ${jwt}`,
+      },
+    })
+    .then(res => this._processingResponse(res));
+  }
 }
 
 const mainApi = new MainApi({
