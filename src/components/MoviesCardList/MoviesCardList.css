@@ -13,6 +13,7 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
+  padding-bottom: 50px;
 }
 
 .movies-card-list__more-button {
@@ -22,12 +23,17 @@
   width: 320px;
   height: 36px;
   padding: 0;
-  margin: 80px auto;
+  margin: 30px auto 80px;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
   color: #000000;
+  display: none;
+}
+
+.movies-card-list__more-button_visible {
+  display: block;
 }
 
 .movies-card-list__more-button:hover {

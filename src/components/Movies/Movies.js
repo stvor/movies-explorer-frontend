@@ -7,11 +7,15 @@ import filterMoviesByQuery from '../../utils/filterByQuery';
 
 function Movies() {
   const [filteredMovies, setFilteredMovies] = React.useState([]);
+  const [isMoreButtonShown, setIsMoreButtonShown] = React.useState(false);
 
   function handleSearch(query) {
     moviesApi.getMovies()
       .then((data) => {
-        setFilteredMovies(filterMoviesByQuery(data, query))
+        setFilteredMovies(filterMoviesByQuery(data, query));
+        if (filteredMovies.length === 1) {
+          setIsMoreButtonShown(true);
+        }
       })
       .catch(err => {
         console.log(err)
@@ -21,7 +25,10 @@ function Movies() {
   return (
     <section className="movies">
       <SearchForm onSearch={handleSearch}/>
-      <MoviesCardList movies={filteredMovies} />
+      <MoviesCardList
+        movies={filteredMovies}
+        isMoreButtonShown={isMoreButtonShown}
+      />
     </section>
   );
 }
