@@ -15,9 +15,7 @@ import mainApi from '../../utils/MainApi';
 import './App.css';
 
 function App() {
-  // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
-
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
 
   const history = useHistory();
@@ -61,6 +59,25 @@ function App() {
     localStorage.removeItem('jwt');
     history.push('/');
   }
+
+  function tokenCheck() {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      mainApi.getUser(jwt)
+        .then((res) => {
+          if (res) {
+            setIsLoggedIn(true);
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  }
+
+  React.useEffect(() => {
+    tokenCheck();
+  }, []);
 
   React.useEffect(() => {
     if (isLoggedIn) {
