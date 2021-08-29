@@ -1,3 +1,5 @@
+import { BEATFILM_URL } from '../utils/constants';
+
 class MainApi {
   constructor({ url }) {
     this.url = url;
@@ -59,7 +61,7 @@ class MainApi {
     .then(res => this._processingResponse(res));
   }
 
-  saveMovie({ movieData, jwt }) {
+  saveMovie({ movie, jwt }) {
     return fetch(`${this.url}/movies`, {
       method: 'POST',
       headers: {
@@ -67,17 +69,17 @@ class MainApi {
         "Authorization" : `Bearer ${jwt}`,
       },
       body: JSON.stringify({
-        country: movieData.country,
-        director: movieData.director,
-        duration: movieData.duration,
-        year: movieData.year,
-        description: movieData.description,
-        image: movieData.image.url,
-        trailer: movieData.trailerLink,
-        nameRU: movieData.nameRU,
-        nameEN: movieData.nameEN,
-        thumbnail: movieData.image.formats.thumbnail.url,
-        movieId: movieData.id,
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: `${BEATFILM_URL}${movie.image.url}`,
+        trailer: movie.trailerLink,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+        thumbnail: `${BEATFILM_URL}${movie.image.formats.thumbnail.url}`,
+        movieId: movie.id,
       }),
     })
     .then(res => this._processingResponse(res));
