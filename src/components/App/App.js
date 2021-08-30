@@ -17,6 +17,7 @@ import './App.css';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
+  const [savedMovies, setSavedMovies] =  React.useState([]);
 
   const history = useHistory();
 
@@ -60,7 +61,21 @@ function App() {
     history.push('/');
   }
 
-  function tokenCheck() {
+  function handleMovieSave(movie) {
+    const jwt = localStorage.getItem('jwt');
+    mainApi.saveMovie({ movie, jwt })
+      .then((data) => {
+        setSavedMovies((state) => [
+          data,
+          ...state
+        ]);
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  React.useEffect(() => {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
       mainApi.getUser(jwt)
@@ -73,10 +88,19 @@ function App() {
           console.log(err)
         })
     }
-  }
+  }, []);
 
   React.useEffect(() => {
-    tokenCheck();
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      mainApi.getSavedMovies(jwt)
+        .then((data) => {
+          setSavedMovies(data);
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
   }, []);
 
   React.useEffect(() => {
@@ -104,7 +128,9 @@ function App() {
             <ProtectedRoute
               path="/movies"
               component={Movies}
+              savedMovies={savedMovies}
               isLoggedIn={isLoggedIn}
+              onMovieSave={handleMovieSave}
             />
             <ProtectedRoute
               path="/saved-movies"
