@@ -61,6 +61,17 @@ class MainApi {
     .then(res => this._processingResponse(res));
   }
 
+  getSavedMovies(jwt) {
+    return fetch(`${this.url}/movies`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization" : `Bearer ${jwt}`,
+      },
+    })
+      .then(res => this._processingResponse(res));
+  }
+
   saveMovie({ movie, jwt }) {
     return fetch(`${this.url}/movies`, {
       method: 'POST',
@@ -97,8 +108,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  // url: 'http://api.moviest.nomoredomains.monster',
-  url: 'http://localhost:3000',
+  url: 'http://api.moviest.nomoredomains.monster',
 });
 
 export default mainApi;
