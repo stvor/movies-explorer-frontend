@@ -4,22 +4,26 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import moviesApi from '../../utils/MoviesApi';
 import filterMoviesByQuery from '../../utils/filterByQuery';
+import { moviesFromBeatfilm } from '../../utils/constants';
 
 function Movies() {
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [isMoreButtonShown, setIsMoreButtonShown] = React.useState(false);
 
   function handleSearch(query) {
-    moviesApi.getMovies()
-      .then((data) => {
-        setFilteredMovies(filterMoviesByQuery(data, query));
-        if (filteredMovies.length === 1) {
-          setIsMoreButtonShown(true);
-        }
-      })
-      .catch(err => {
-        console.log(err)
-      });
+    const newFilteredMovies = filterMoviesByQuery(moviesFromBeatfilm, query);
+    setFilteredMovies(newFilteredMovies);
+
+    // moviesApi.getMovies()
+    //   .then((data) => {
+    //     setFilteredMovies(filterMoviesByQuery(data, query));
+    //     if (filteredMovies.length === 1) {
+    //       setIsMoreButtonShown(true);
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   });
     }
 
   return (
