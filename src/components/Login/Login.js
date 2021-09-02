@@ -2,23 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css';
 import Logo from '../../images/logo.svg';
+import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 
 function Login({ onLogin }) {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-
-  function handleEmailChange(evt) {
-    setEmail(evt.target.value);
-  }
-
-  function handlePasswordChange(evt) {
-    setPassword(evt.target.value);
-  }
+  const { values, handleChange, resetFrom, errors, isValid } = useFormWithValidation();
+  const submitButtonClassName = `form__submit ${
+    !isValid && "form__submit_inactive"
+  }`;
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onLogin({ email, password });
+    onLogin(values);
   }
+
+  React.useEffect(() => {
+    resetFrom({}, {}, false);
+  }, [resetFrom]);
 
   return (
     <section className="login">
@@ -27,6 +26,7 @@ function Login({ onLogin }) {
         onSubmit={handleSubmit}
         name="login"
         action="#"
+        noValidate
       >
         <Link to="/">
           <img
@@ -40,23 +40,25 @@ function Login({ onLogin }) {
         <label className="form__label">
           <span className="form__label-text">E-mail</span>
           <input
-            value={email || ''}
-            onChange={handleEmailChange}
+            value={values.email || ''}
+            onChange={handleChange}
             id="email-input"
-            type="text"
+            type="email"
             name="email"
             placeholder="E-mail"
             className="form__input form__input_type_email"
             required
           />
-          <span className="email-input-error form__input-error"></span>
+          <span className="email-input-error form__input-error">
+            {errors.email || ''}
+          </span>
         </label>
 
         <label className="form__label">
           <span className="form__label-text">Пароль</span>
           <input
-            value={password || ''}
-            onChange={handlePasswordChange}
+            value={values.password || ''}
+            onChange={handleChange}
             id="password-input"
             type="password"
             name="password"
@@ -64,12 +66,15 @@ function Login({ onLogin }) {
             className="form__input form__input_type_password"
             required
           />
-          <span className="password-input-error form__input-error"></span>
+          <span className="password-input-error form__input-error">
+            {errors.password || ''}
+          </span>
         </label>
 
         <button
           type="submit"
-          className="form__submit"
+          className={submitButtonClassName}
+          disabled={!isValid}
         >Войти</button>
 
         <div className="form__sign-in-wrap">
