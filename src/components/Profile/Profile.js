@@ -1,29 +1,22 @@
 import React from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Profile.css';
+import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 
 function Profile({ onProfileEdit, onSignOut }) {
-  const [name, setName] = React.useState('name');
-  const [email, setEmail] = React.useState('email');
   const currentUser = React.useContext(CurrentUserContext);
-
-  function handleNameChange(evt) {
-    setName(evt.target.value);
-  }
-
-  function handleEmailChange(evt) {
-    setEmail(evt.target.value);
-  }
+  const { values, handleChange, resetFrom, errors, isValid } = useFormWithValidation();
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onProfileEdit({ name, email });
+    onProfileEdit(values);
   }
 
   React.useEffect(() => {
-    setName(currentUser.name);
-    setEmail(currentUser.email);
-  }, [currentUser]);
+    if (currentUser) {
+      resetFrom(currentUser, {}, false);
+    }
+  }, [currentUser, resetFrom]);
 
 
   return (
@@ -39,8 +32,8 @@ function Profile({ onProfileEdit, onSignOut }) {
         <label className="profile-form__label">
           <span className="profile-form__label-text">Имя</span>
           <input
-            value={name || ''}
-            onChange={handleNameChange}
+            value={values.name || ''}
+            onChange={handleChange}
             id="name-input"
             type="text"
             name="name"
@@ -55,8 +48,8 @@ function Profile({ onProfileEdit, onSignOut }) {
         <label className="profile-form__label">
           <span className="profile-form__label-text">E-mail</span>
           <input
-            value={email || ''}
-            onChange={handleEmailChange}
+            value={values.email || ''}
+            onChange={handleChange}
             id="email-input"
             type="text"
             name="email"
