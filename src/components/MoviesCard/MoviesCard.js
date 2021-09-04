@@ -24,11 +24,13 @@ function MoviesCard({ movie }) {
           </Route>
         </Switch>
       </div>
-      <img
-        className="movies-card__cover"
-        // src={`${BEATFILM_URL}${movie.image.url}`}
-        alt="Обложка фильма"
-      />
+      <a href={movie.trailerLink} target="_blank" rel="noreferrer">
+        <img
+          className="movies-card__cover"
+          // src={`${BEATFILM_URL}${movie.image.url}`}
+          alt="Обложка фильма"
+        />
+      </a>
     </li>
   );
 }
