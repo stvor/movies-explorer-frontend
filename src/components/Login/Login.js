@@ -4,10 +4,11 @@ import './Login.css';
 import Logo from '../../images/logo.svg';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 
-function Login({ onLogin }) {
+function Login({ onLogin, isSending }) {
   const { values, handleChange, resetFrom, errors, isValid } = useFormWithValidation();
+  const isDisabled = !isValid || isSending;
   const submitButtonClassName = `form__submit ${
-    !isValid && "form__submit_inactive"
+    isDisabled && "form__submit_inactive"
   }`;
 
   function handleSubmit(evt) {
@@ -74,7 +75,7 @@ function Login({ onLogin }) {
         <button
           type="submit"
           className={submitButtonClassName}
-          disabled={!isValid}
+          disabled={isDisabled}
         >Войти</button>
 
         <div className="form__sign-in-wrap">

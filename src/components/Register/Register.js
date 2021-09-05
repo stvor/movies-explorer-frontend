@@ -4,10 +4,11 @@ import './Register.css';
 import Logo from '../../images/logo.svg';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 
-function Register({ onRegister }) {
+function Register({ onRegister, isSending }) {
   const { values, handleChange, resetFrom, errors, isValid } = useFormWithValidation();
+  const isDisabled = !isValid || isSending;
   const submitButtonClassName = `form__submit ${
-    !isValid && "form__submit_inactive"
+    isDisabled && "form__submit_inactive"
   }`;
 
   function handleSubmit(evt) {
@@ -92,7 +93,7 @@ function Register({ onRegister }) {
         <button
           type="submit"
           className={submitButtonClassName}
-          disabled={!isValid}
+          disabled={isDisabled}
         >Зарегистрироваться</button>
 
         <div className="form__sign-in-wrap">

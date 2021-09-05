@@ -21,7 +21,9 @@ function App() {
 
   const history = useHistory();
 
+  const [isRegisterDataSending, setIsRegisterDataSending] = React.useState(false);
   function handleRegister(registerData) {
+    setIsRegisterDataSending(true);
     mainApi.signUp(registerData)
       .then(() => {
         handleLogin({
@@ -32,9 +34,14 @@ function App() {
       .catch(err => {
         console.log(err)
       })
+      .finally(() => {
+        setIsRegisterDataSending(false);
+      })
   }
 
+  const [isLoginDataSending, setIsLoginDataSending] = React.useState(false);
   function handleLogin(loginData) {
+    setIsLoginDataSending(true);
     mainApi.signIn(loginData)
       .then(res => {
         setIsLoggedIn(true);
@@ -43,6 +50,9 @@ function App() {
       })
       .catch(err => {
         console.log(err)
+      })
+      .finally(() => {
+        setIsLoginDataSending(false);
       })
   }
 
@@ -145,10 +155,16 @@ function App() {
               onSignOut={handleSignOut}
             />
             <Route path="/signin">
-              <Login onLogin={handleLogin} />
+              <Login
+                onLogin={handleLogin}
+                isSending={isLoginDataSending}
+              />
             </Route>
             <Route path="/signup">
-              <Register onRegister={handleRegister} />
+              <Register
+                onRegister={handleRegister}
+                isSending={isRegisterDataSending}
+              />
             </Route>
             <Route path="*">
               <PageNotFound />
