@@ -16,10 +16,24 @@ function SearchForm({ onSearch }) {
 
   return (
     <section className="search-form">
-      <form onSubmit={handleSubmit} className="search-form__form">
+      <form
+        onSubmit={handleSubmit}
+        className="search-form__form"
+      >
         <div className="search-form__input-wrap">
-          <input value={query || ''} onChange={handleQueryChange} className="search-form__input" type="text" name="query" placeholder="Фильм" required></input>
-          <button className="search-form__submit" type="submit">Найти</button>
+          <input
+            value={query || ''}
+            onChange={handleQueryChange}
+            className="search-form__input"
+            type="text"
+            name="query"
+            placeholder="Фильм"
+            required
+          />
+          <button
+            className="search-form__submit"
+            type="submit"
+          >Найти</button>
         </div>
         <div className="search-form__filter">
           <FilterCheckbox />
