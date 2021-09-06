@@ -138,9 +138,6 @@ function App() {
             <ProtectedRoute
               path="/movies"
               component={Movies}
-              savedMovies={savedMovies}
-              isLoggedIn={isLoggedIn}
-              onMovieSave={handleMovieSave}
             />
             <ProtectedRoute
               path="/saved-movies"

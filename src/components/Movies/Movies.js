@@ -7,31 +7,26 @@ import filterMoviesByQuery from '../../utils/filterByQuery';
 import { moviesFromBeatfilm } from '../../utils/constants';
 
 function Movies() {
+  const [initialMovies, setInitialMovies] = React.useState([]);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
-  const [isMoreButtonShown, setIsMoreButtonShown] = React.useState(false);
 
   function handleSearch(query) {
-    const newFilteredMovies = filterMoviesByQuery(moviesFromBeatfilm, query);
-    setFilteredMovies(newFilteredMovies);
+    const searchResult = filterMoviesByQuery(initialMovies, query);
+    setFilteredMovies(searchResult);
+  }
 
-    // moviesApi.getMovies()
-    //   .then((data) => {
-    //     setFilteredMovies(filterMoviesByQuery(data, query));
-    //     if (filteredMovies.length === 1) {
-    //       setIsMoreButtonShown(true);
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //   });
-    }
+  React.useEffect(() => {
+    // получить все фильмы из API вместо мока
+    // TODO
+
+    setInitialMovies(moviesFromBeatfilm);
+  }, []);
 
   return (
     <section className="movies">
       <SearchForm onSearch={handleSearch}/>
       <MoviesCardList
         movies={filteredMovies}
-        isMoreButtonShown={isMoreButtonShown}
       />
     </section>
   );
