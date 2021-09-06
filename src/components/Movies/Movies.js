@@ -3,15 +3,15 @@ import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import moviesApi from '../../utils/MoviesApi';
-import filterMoviesByQuery from '../../utils/filterByQuery';
+import filterMovies from '../../utils/filterMovies';
 import { moviesFromBeatfilm } from '../../utils/constants';
 
 function Movies() {
   const [initialMovies, setInitialMovies] = React.useState([]);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
 
-  function handleSearch(query) {
-    const searchResult = filterMoviesByQuery(initialMovies, query);
+  function handleSearch(query, checkboxStatus) {
+    const searchResult = filterMovies(initialMovies, query, checkboxStatus);
     setFilteredMovies(searchResult);
   }
 

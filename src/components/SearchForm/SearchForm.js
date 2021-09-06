@@ -4,14 +4,19 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 function SearchForm({ onSearch }) {
   const [query, setQuery] = React.useState('');
+  const [checkboxStatus, setCheckboxStatus] = React.useState(false);
 
   function handleQueryChange(evt) {
     setQuery(evt.target.value);
   }
 
+  function handleCheckboxChange(checkboxStatus) {
+    setCheckboxStatus(checkboxStatus);
+  }
+
   function handleSubmit(evt) {
     evt.preventDefault();
-    onSearch(query);
+    onSearch(query, checkboxStatus);
   }
 
   return (
@@ -36,7 +41,10 @@ function SearchForm({ onSearch }) {
           >Найти</button>
         </div>
         <div className="search-form__filter">
-          <FilterCheckbox />
+          <FilterCheckbox
+            checkboxStatus={checkboxStatus}
+            onCheckboxChange={handleCheckboxChange}
+          />
         </div>
       </form>
     </section>
