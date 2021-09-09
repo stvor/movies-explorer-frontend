@@ -15,14 +15,16 @@ function Movies() {
   function handleSearch(query, checkboxStatus) {
     const searchResult = filterMovies(initialMovies, query, checkboxStatus);
     setFilteredMovies(searchResult);
+  }
 
+  React.useEffect(() => {
     if (filteredMovies.length > 12) {
       setMoviesToRender(filteredMovies.slice(0, 12));
       setIsMoreButtonVisible(true);
     } else {
       setMoviesToRender(filteredMovies);
     }
-  }
+  }, [filteredMovies]);
 
   function handleMoreButtonClick() {
     setMoviesToRender((state) => filteredMovies.slice(0, state.length + 3));
@@ -42,7 +44,9 @@ function Movies() {
 
   return (
     <section className="movies">
-      <SearchForm onSearch={handleSearch}/>
+      <SearchForm
+        onSearch={handleSearch}
+      />
       <MoviesCardList
         movies={moviesToRender}
         isMoreButtonVisible={isMoreButtonVisible}
