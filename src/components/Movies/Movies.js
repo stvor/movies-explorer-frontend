@@ -17,6 +17,7 @@ function Movies() {
     setFilteredMovies(searchResult);
   }
 
+  // Выбираем, сколько результатов поиска показать
   React.useEffect(() => {
     if (filteredMovies.length > 12) {
       setMoviesToRender(filteredMovies.slice(0, 12));
@@ -28,11 +29,14 @@ function Movies() {
 
   function handleMoreButtonClick() {
     setMoviesToRender((state) => filteredMovies.slice(0, state.length + 3));
+  }
 
+  // Проверяем видимость кнопки "Ещё"
+  React.useEffect(() => {
     if (moviesToRender.length === filteredMovies.length) {
       setIsMoreButtonVisible(false);
     }
-  }
+  }, [moviesToRender, filteredMovies]);
 
   // Получаем все фильмы из API Beatfilm
   React.useEffect(() => {
