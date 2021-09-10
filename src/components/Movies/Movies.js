@@ -11,24 +11,43 @@ function Movies() {
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [moviesToRender, setMoviesToRender] = React.useState([]);
   const [isMoreButtonVisible, setIsMoreButtonVisible] = React.useState(false);
+  const [firstResultsNumber, setFirstResultsNumber] = React.useState(0);
+  const [moreResultsNumber, setMoreResultsNumber] = React.useState(0);
+  const currentViewport = document.documentElement.clientWidth;
 
   function handleSearch(query, checkboxStatus) {
     const searchResult = filterMovies(initialMovies, query, checkboxStatus);
     setFilteredMovies(searchResult);
   }
 
+  // Устанавливаем количество карточек,
+  // которые отображаются сразу
+  // и по клику на кнопку "Ещё"
+  React.useEffect(() => {
+    if (currentViewport <= 480) {
+      setFirstResultsNumber(5);
+      setMoreResultsNumber(2);
+    } else if (currentViewport <= 768) {
+      setFirstResultsNumber(8);
+      setMoreResultsNumber(2);
+    } else if (currentViewport > 768) {
+      setFirstResultsNumber(12);
+      setMoreResultsNumber(3);
+    }
+  }, []);
+
   // Выбираем, сколько результатов поиска показать
   React.useEffect(() => {
-    if (filteredMovies.length > 12) {
-      setMoviesToRender(filteredMovies.slice(0, 12));
+    if (filteredMovies.length > firstResultsNumber) {
+      setMoviesToRender(filteredMovies.slice(0, firstResultsNumber));
       setIsMoreButtonVisible(true);
     } else {
       setMoviesToRender(filteredMovies);
     }
-  }, [filteredMovies]);
+  }, [filteredMovies, firstResultsNumber]);
 
   function handleMoreButtonClick() {
-    setMoviesToRender((state) => filteredMovies.slice(0, state.length + 3));
+    setMoviesToRender((state) => filteredMovies.slice(0, state.length + moreResultsNumber));
   }
 
   // Проверяем видимость кнопки "Ещё"
