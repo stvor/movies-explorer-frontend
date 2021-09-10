@@ -7,10 +7,6 @@ function MoviesCardList({ movies, isMoreButtonVisible, onMoreButtonClick }) {
     isMoreButtonVisible && "movies-card-list__more-button_visible"
   }`;
 
-  function handleMoreButtonClick() {
-    onMoreButtonClick();
-  }
-
   return (
     <section className="movies-card-list">
       <ul className="movies-card-list__list">
@@ -23,7 +19,7 @@ function MoviesCardList({ movies, isMoreButtonVisible, onMoreButtonClick }) {
       </ul>
       <button
         className={moreButtonClassName}
-        onClick={handleMoreButtonClick}
+        onClick={onMoreButtonClick}
       >Ещё</button>
     </section>
   );
