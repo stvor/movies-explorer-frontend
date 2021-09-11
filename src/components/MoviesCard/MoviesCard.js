@@ -3,6 +3,7 @@ import './MoviesCard.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { Route, Switch } from 'react-router-dom';
 import { BEATFILM_URL } from '../../utils/constants';
+import convertDuration from '../../utils/convertDuration';
 
 function MoviesCard({ movie }) {
   const [isSaved, setIsSaved] = React.useState(false);
@@ -13,7 +14,7 @@ function MoviesCard({ movie }) {
       <div className="movies-card__header">
         <div className="movies-card__info">
           <h2 className="movies-card__title">{movie.nameRU}</h2>
-          <span className="movies-card__duration">{movie.duration}</span>
+          <span className="movies-card__duration">{convertDuration(movie.duration)}</span>
         </div>
         <Switch>
           <Route path="/movies">
