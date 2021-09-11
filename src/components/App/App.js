@@ -59,7 +59,9 @@ function App() {
   function handleProfileEdit(userData) {
     const jwt = localStorage.getItem('jwt');
     mainApi.updateUser({ userData, jwt })
-      .then(() => console.log('Update profile success'))
+      .then((newUserData) => {
+        setCurrentUser(newUserData);
+      })
       .catch(err => {
         console.log(err)
       })
