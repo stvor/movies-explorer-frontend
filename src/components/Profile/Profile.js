@@ -3,9 +3,14 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Profile.css';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 
-function Profile({ onProfileEdit, onSignOut }) {
+function Profile({ onProfileEdit, onSignOut, isSending }) {
   const currentUser = React.useContext(CurrentUserContext);
   const { values, handleChange, resetFrom, errors, isValid } = useFormWithValidation();
+
+  const isDisabled = !isValid || isSending;
+  const submitButtonClassName = `profile-form__submit ${
+    isDisabled && "profile-form__submit_inactive"
+  }`;
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -58,15 +63,23 @@ function Profile({ onProfileEdit, onSignOut }) {
             required
           />
         </label>
-
-        <button
-          type="submit"
-          className="profile-form__submit"
-        >Редактировать</button>
-        <button
-          onClick={onSignOut}
-          className="profile__logout"
-        >Выйти из аккаунта</button>
+        {isEditing ? (
+          <button
+            type="submit"
+            className={submitButtonClassName}
+          >Сохранить</button>
+        ) : (
+          <>
+            <button
+              onClick={handleEditClick}
+              className="profile-form__edit"
+            >Редактировать</button>
+            <button
+              onClick={onSignOut}
+              className="profile__logout"
+            >Выйти из аккаунта</button>
+          </>
+        )}
       </form>
     </section>
   );

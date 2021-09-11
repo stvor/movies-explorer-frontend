@@ -61,6 +61,29 @@
 
 .profile-form__submit {
   margin-top: 204px;
+  height: 50px;
+  border: none;
+  background-color: #FF6838;
+  border-radius: 3px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FFFFFF;
+}
+
+.profile-form__submit_inactive {
+  background-color: #F8F8F8;
+  color: #C2C2C2;
+}
+
+.profile-form__submit:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.profile-form__edit {
+  margin-top: 204px;
   padding: 0;
   border: none;
   background-color: transparent;
@@ -71,7 +94,7 @@
   color: #000000;
 }
 
-.profile-form__submit:hover {
+.profile-form__edit:hover {
   cursor: pointer;
   opacity: 0.8;
 }
@@ -103,6 +126,11 @@
   }
 
   .profile-form__submit {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .profile-form__edit {
     font-size: 12px;
     line-height: 15px;
   }

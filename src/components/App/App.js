@@ -56,7 +56,9 @@ function App() {
       })
   }
 
+  const [isProfileDataSending, setIsProfileDataSending] = React.useState(false);
   function handleProfileEdit(userData) {
+    setIsProfileDataSending(true);
     const jwt = localStorage.getItem('jwt');
     mainApi.updateUser({ userData, jwt })
       .then((newUserData) => {
@@ -64,6 +66,9 @@ function App() {
       })
       .catch(err => {
         console.log(err)
+      })
+      .finally(() => {
+        setIsProfileDataSending(false);
       })
   }
 
@@ -152,6 +157,7 @@ function App() {
               isLoggedIn={isLoggedIn}
               onProfileEdit={handleProfileEdit}
               onSignOut={handleSignOut}
+              isSending={isProfileDataSending}
             />
             <Route path="/signin">
               <Login
