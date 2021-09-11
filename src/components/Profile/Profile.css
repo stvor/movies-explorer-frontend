@@ -59,6 +59,10 @@
   outline: none;
 }
 
+.profile-form__input_disabled {
+  background-color: transparent;
+}
+
 .profile-form__submit {
   margin-top: 204px;
   height: 50px;

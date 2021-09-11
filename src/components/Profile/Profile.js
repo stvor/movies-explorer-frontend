@@ -5,15 +5,25 @@ import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 
 function Profile({ onProfileEdit, onSignOut, isSending }) {
   const currentUser = React.useContext(CurrentUserContext);
+  const [isEditing, setIsEditing] = React.useState(false);
   const { values, handleChange, resetFrom, errors, isValid } = useFormWithValidation();
 
   const isDisabled = !isValid || isSending;
   const submitButtonClassName = `profile-form__submit ${
     isDisabled && "profile-form__submit_inactive"
   }`;
+  const inputClassName = `profile-form__input ${
+    !isEditing && "profile-form__input_disabled"
+  }`;
+
+  function handleEditClick() {
+    resetFrom(currentUser, {}, false);
+    setIsEditing(true);
+  }
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    setIsEditing(false);
     onProfileEdit(values);
   }
 
@@ -43,10 +53,11 @@ function Profile({ onProfileEdit, onSignOut, isSending }) {
             type="text"
             name="name"
             placeholder="Имя"
-            className="profile-form__input profile-form__input_type_name"
+            className={inputClassName}
             minLength="2"
             maxLength="30"
             required
+            disabled={!isEditing}
           />
         </label>
 
@@ -59,8 +70,9 @@ function Profile({ onProfileEdit, onSignOut, isSending }) {
             type="text"
             name="email"
             placeholder="E-mail"
-            className="profile-form__input profile-form__input_type_email"
+            className={inputClassName}
             required
+            disabled={!isEditing}
           />
         </label>
         {isEditing ? (
