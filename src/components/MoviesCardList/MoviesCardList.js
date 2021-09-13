@@ -12,7 +12,7 @@ function MoviesCardList({ movies, isMoreButtonVisible, onMoreButtonClick }) {
       <ul className="movies-card-list__list">
         {movies.map((movie) => (
           <MoviesCard
-            key={movie.id}
+            key={movie.id || movie.movieId}
             movie={movie}
           />
         ))}
