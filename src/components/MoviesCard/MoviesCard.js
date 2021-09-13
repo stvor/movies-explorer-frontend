@@ -9,6 +9,11 @@ function MoviesCard({ movie }) {
   const [isSaved, setIsSaved] = React.useState(false);
   const currentUser = React.useContext(CurrentUserContext);
 
+  const saveButtonClassName = `movies-card__button movies-card__button_type_save ${
+    isSaved && "movies-card__button_type_save-active"
+  }`;
+  const deleteButtonClassName = "movies-card__button movies-card__button_type_delete";
+
   return (
     <li className="movies-card">
       <div className="movies-card__header">
@@ -18,10 +23,16 @@ function MoviesCard({ movie }) {
         </div>
         <Switch>
           <Route path="/movies">
-            <button className={`movies-card__button movies-card__button_type_save ${isSaved ? "movies-card__button_type_save-active" : ""}`} type="button"></button>
+            <button
+              className={saveButtonClassName}
+              type="button"
+            ></button>
           </Route>
           <Route path="/saved-movies">
-            <button className="movies-card__button movies-card__button_type_delete" type="button"></button>
+            <button
+              className={deleteButtonClassName}
+              type="button"
+            ></button>
           </Route>
         </Switch>
       </div>
