@@ -92,6 +92,17 @@ function App() {
       })
   }
 
+  function handleMovieDelete(movie) {
+    const jwt = localStorage.getItem('jwt');
+    mainApi.deleteMovie({ movie, jwt })
+      .then(() => {
+        setSavedMovies((movies) => movies.filter((m) => m._id !== movie._id));
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   React.useEffect(() => {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
@@ -150,6 +161,8 @@ function App() {
               path="/saved-movies"
               component={SavedMovies}
               isLoggedIn={isLoggedIn}
+              savedMovies={savedMovies}
+              onMovieDelete={handleMovieDelete}
             />
             <ProtectedRoute
               path="/profile"

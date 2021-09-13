@@ -96,8 +96,8 @@ class MainApi {
     .then(res => this._processingResponse(res));
   }
 
-  deleteMovie({ movieId, jwt }) {
-    return fetch(`${this.url}/movies/${movieId}`, {
+  deleteMovie({ movie, jwt }) {
+    return fetch(`${this.url}/movies/${movie._id}`, {
       method: 'DELETE',
       headers: {
         "Authorization" : `Bearer ${jwt}`,
