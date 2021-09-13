@@ -20,6 +20,7 @@ function MoviesCardList({ movies, isMoreButtonVisible, onMoreButtonClick }) {
       <button
         className={moreButtonClassName}
         onClick={onMoreButtonClick}
+        type="button"
       >Ещё</button>
     </section>
   );

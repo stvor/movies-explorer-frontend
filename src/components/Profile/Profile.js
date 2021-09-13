@@ -85,10 +85,12 @@ function Profile({ onProfileEdit, onSignOut, isSending }) {
             <button
               onClick={handleEditClick}
               className="profile-form__edit"
+              type="button"
             >Редактировать</button>
             <button
               onClick={onSignOut}
               className="profile__logout"
+              type="button"
             >Выйти из аккаунта</button>
           </>
         )}
