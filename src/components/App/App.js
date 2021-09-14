@@ -81,10 +81,10 @@ function App() {
   function handleMovieSave(movie) {
     const jwt = localStorage.getItem('jwt');
     mainApi.saveMovie({ movie, jwt })
-      .then((data) => {
-        setSavedMovies((state) => [
-          data,
-          ...state
+      .then((newSavedMovie) => {
+        setSavedMovies((movies) => [
+          newSavedMovie,
+          ...movies
         ]);
       })
       .catch(err => {
@@ -156,6 +156,7 @@ function App() {
             <ProtectedRoute
               path="/movies"
               component={Movies}
+              onMovieSave={handleMovieSave}
             />
             <ProtectedRoute
               path="/saved-movies"

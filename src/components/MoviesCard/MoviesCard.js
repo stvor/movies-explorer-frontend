@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import { BEATFILM_URL } from '../../utils/constants';
 import convertDuration from '../../utils/convertDuration';
 
-function MoviesCard({ movie, onMovieDelete }) {
+function MoviesCard({ movie, onMovieSave, onMovieDelete }) {
   const [isSaved, setIsSaved] = React.useState(false);
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -16,6 +16,10 @@ function MoviesCard({ movie, onMovieDelete }) {
 
   function handleDeleteClick() {
     onMovieDelete(movie);
+  }
+
+  function handleSaveClick() {
+    onMovieSave(movie);
   }
 
   return (
@@ -29,6 +33,7 @@ function MoviesCard({ movie, onMovieDelete }) {
           <Route path="/movies">
             <button
               className={saveButtonClassName}
+              onClick={handleSaveClick}
               type="button"
             ></button>
           </Route>

@@ -6,7 +6,7 @@ import moviesApi from '../../utils/MoviesApi';
 import filterMovies from '../../utils/filterMovies';
 import { moviesFromBeatfilm } from '../../utils/constants';
 
-function Movies() {
+function Movies({ onMovieSave }) {
   const [initialMovies, setInitialMovies] = React.useState([]);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [moviesToRender, setMoviesToRender] = React.useState([]);
@@ -72,6 +72,7 @@ function Movies() {
       />
       <MoviesCardList
         movies={moviesToRender}
+        onMovieSave={onMovieSave}
         isMoreButtonVisible={isMoreButtonVisible}
         onMoreButtonClick={handleMoreButtonClick}
       />
