@@ -12,7 +12,7 @@ function MoviesCard({
   onMovieDelete
 }) {
   const currentUser = React.useContext(CurrentUserContext);
-  const isSaved = savedMovies.some((m) => m.movieId === movie.id);
+  const isSaved = movie.id && savedMovies.some((m) => m.movieId === movie.id && currentUser._id === m.owner);
 
   const saveButtonClassName = `movies-card__button movies-card__button_type_save ${
     isSaved && "movies-card__button_type_save-active"
@@ -25,7 +25,7 @@ function MoviesCard({
 
   function handleSaveClick() {
     if (isSaved) {
-      onMovieDelete(savedMovies.filter((m) => m.movieId === movie.id)[0]);
+      onMovieDelete(savedMovies.filter((m) => m.movieId === movie.id && currentUser._id === m.owner)[0]);
     } else if (!isSaved) {
       onMovieSave(movie);
     }
