@@ -24,7 +24,11 @@ function MoviesCard({
   }
 
   function handleSaveClick() {
-    onMovieSave(movie);
+    if (isSaved) {
+      onMovieDelete(savedMovies.filter((m) => m.movieId === movie.id)[0]);
+    } else if (!isSaved) {
+      onMovieSave(movie);
+    }
   }
 
   return (
