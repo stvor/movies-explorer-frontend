@@ -7,7 +7,7 @@ import filterMovies from '../../utils/filterMovies';
 import { moviesFromBeatfilm } from '../../utils/constants';
 
 function Movies({
-  savedMovies,
+  savedMoviesByCurrentUser,
   onMovieSave,
   onMovieDelete
 }) {
@@ -76,7 +76,7 @@ function Movies({
       />
       <MoviesCardList
         movies={moviesToRender}
-        savedMovies={savedMovies}
+        savedMoviesByCurrentUser={savedMoviesByCurrentUser}
         onMovieSave={onMovieSave}
         onMovieDelete={onMovieDelete}
         isMoreButtonVisible={isMoreButtonVisible}

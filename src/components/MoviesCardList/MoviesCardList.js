@@ -4,7 +4,7 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 
 function MoviesCardList({
   movies,
-  savedMovies,
+  savedMoviesByCurrentUser,
   onMovieSave,
   onMovieDelete,
   isMoreButtonVisible,
@@ -21,7 +21,7 @@ function MoviesCardList({
           <MoviesCard
             key={movie.id || movie.movieId}
             movie={movie}
-            savedMovies={savedMovies}
+            savedMoviesByCurrentUser={savedMoviesByCurrentUser}
             onMovieSave={onMovieSave}
             onMovieDelete={onMovieDelete}
           />

@@ -3,13 +3,13 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './SavedMovies.css';
 
-function SavedMovies({ savedMovies, onMovieDelete }) {
+function SavedMovies({ savedMoviesByCurrentUser, onMovieDelete }) {
 
   return (
   <section className="saved-movies">
     <SearchForm />
     <MoviesCardList
-      movies={savedMovies}
+      movies={savedMoviesByCurrentUser}
       isMoreButtonVisible={false}
       onMovieDelete={onMovieDelete}
     />

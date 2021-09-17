@@ -17,7 +17,7 @@ import './App.css';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
-  const [savedMovies, setSavedMovies] =  React.useState([]);
+  const [savedMoviesByCurrentUser, setSavedMoviesByCurrentUser] =  React.useState([]);
 
   const history = useHistory();
 
@@ -82,7 +82,7 @@ function App() {
     const jwt = localStorage.getItem('jwt');
     mainApi.saveMovie({ movie, jwt })
       .then((newSavedMovie) => {
-        setSavedMovies((movies) => [
+        setSavedMoviesByCurrentUser((movies) => [
           newSavedMovie,
           ...movies
         ]);
@@ -96,7 +96,7 @@ function App() {
     const jwt = localStorage.getItem('jwt');
     mainApi.deleteMovie({ movie, jwt })
       .then(() => {
-        setSavedMovies((movies) => movies.filter((m) => m._id !== movie._id));
+        setSavedMoviesByCurrentUser((movies) => movies.filter((m) => m._id !== movie._id));
       })
       .catch(err => {
         console.log(err)
@@ -123,13 +123,13 @@ function App() {
     if (jwt) {
       mainApi.getSavedMovies(jwt)
         .then((data) => {
-          setSavedMovies(data);
+          setSavedMoviesByCurrentUser(data.filter((i) => i.owner === currentUser._id));
         })
         .catch(err => {
           console.log(err)
         })
     }
-  }, []);
+  }, [currentUser]);
 
   React.useEffect(() => {
     if (isLoggedIn) {
@@ -156,7 +156,7 @@ function App() {
             <ProtectedRoute
               path="/movies"
               component={Movies}
-              savedMovies={savedMovies}
+              savedMoviesByCurrentUser={savedMoviesByCurrentUser}
               onMovieSave={handleMovieSave}
               onMovieDelete={handleMovieDelete}
             />
@@ -164,7 +164,7 @@ function App() {
               path="/saved-movies"
               component={SavedMovies}
               isLoggedIn={isLoggedIn}
-              savedMovies={savedMovies}
+              savedMoviesByCurrentUser={savedMoviesByCurrentUser}
               onMovieDelete={handleMovieDelete}
             />
             <ProtectedRoute

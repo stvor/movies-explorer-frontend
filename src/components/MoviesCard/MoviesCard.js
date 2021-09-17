@@ -1,18 +1,16 @@
 import React from 'react';
 import './MoviesCard.css';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { Route, Switch } from 'react-router-dom';
 import { BEATFILM_URL } from '../../utils/constants';
 import convertDuration from '../../utils/convertDuration';
 
 function MoviesCard({
   movie,
-  savedMovies,
+  savedMoviesByCurrentUser,
   onMovieSave,
   onMovieDelete
 }) {
-  const currentUser = React.useContext(CurrentUserContext);
-  const isSaved = movie.id && savedMovies.some((m) => m.movieId === movie.id && currentUser._id === m.owner);
+  const isSaved = movie.id && savedMoviesByCurrentUser.some((m) => m.movieId === movie.id);
 
   const saveButtonClassName = `movies-card__button movies-card__button_type_save ${
     isSaved && "movies-card__button_type_save-active"
@@ -25,7 +23,7 @@ function MoviesCard({
 
   function handleSaveClick() {
     if (isSaved) {
-      onMovieDelete(savedMovies.filter((m) => m.movieId === movie.id && currentUser._id === m.owner)[0]);
+      onMovieDelete(savedMoviesByCurrentUser.filter((m) => m.movieId === movie.id)[0]);
     } else if (!isSaved) {
       onMovieSave(movie);
     }
