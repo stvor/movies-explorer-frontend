@@ -12,6 +12,7 @@ function SearchForm({ onSearch }) {
 
   function handleCheckboxChange(checkboxStatus) {
     setCheckboxStatus(checkboxStatus);
+    onSearch(query, checkboxStatus);
   }
 
   function handleSubmit(evt) {
