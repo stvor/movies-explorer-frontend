@@ -8,7 +8,8 @@ function MoviesCardList({
   onMovieSave,
   onMovieDelete,
   isMoreButtonVisible,
-  onMoreButtonClick
+  onMoreButtonClick,
+  isSearchDone
 }) {
   const moreButtonClassName = `movies-card-list__more-button ${
     isMoreButtonVisible && "movies-card-list__more-button_visible"
@@ -17,15 +18,21 @@ function MoviesCardList({
   return (
     <section className="movies-card-list">
       <ul className="movies-card-list__list">
-        {movies.map((movie) => (
-          <MoviesCard
-            key={movie.id || movie.movieId}
-            movie={movie}
-            savedMoviesByCurrentUser={savedMoviesByCurrentUser}
-            onMovieSave={onMovieSave}
-            onMovieDelete={onMovieDelete}
-          />
-        ))}
+        {isSearchDone ? (
+          movies.length > 0 ? (
+            movies.map((movie) => (
+              <MoviesCard
+                key={movie.id || movie.movieId}
+                movie={movie}
+                savedMoviesByCurrentUser={savedMoviesByCurrentUser}
+                onMovieSave={onMovieSave}
+                onMovieDelete={onMovieDelete}
+              />
+            ))
+          ) : (
+            "Ничего не найдено"
+          )
+        ) : ("")}
       </ul>
       <button
         className={moreButtonClassName}

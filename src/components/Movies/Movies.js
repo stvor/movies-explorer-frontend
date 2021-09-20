@@ -17,11 +17,13 @@ function Movies({
   const [isMoreButtonVisible, setIsMoreButtonVisible] = React.useState(false);
   const [firstResultsNumber, setFirstResultsNumber] = React.useState(0);
   const [moreResultsNumber, setMoreResultsNumber] = React.useState(0);
+  const [isSearchDone, setIsSearchDone] = React.useState(false);
   const currentViewport = document.documentElement.clientWidth;
 
   function handleSearch(query, checkboxStatus) {
     const searchResult = filterMovies(initialMovies, query, checkboxStatus);
     setFilteredMovies(searchResult);
+    setIsSearchDone(true);
   }
 
   // Устанавливаем количество карточек,
@@ -80,6 +82,7 @@ function Movies({
         onMovieSave={onMovieSave}
         onMovieDelete={onMovieDelete}
         isMoreButtonVisible={isMoreButtonVisible}
+        isSearchDone={isSearchDone}
         onMoreButtonClick={handleMoreButtonClick}
       />
     </section>
