@@ -2,6 +2,7 @@ import React from 'react';
 import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import Preloader from '../Preloader/Preloader';
 import moviesApi from '../../utils/MoviesApi';
 import filterMovies from '../../utils/filterMovies';
 import { moviesFromBeatfilm } from '../../utils/constants';
@@ -17,13 +18,29 @@ function Movies({
   const [isMoreButtonVisible, setIsMoreButtonVisible] = React.useState(false);
   const [firstResultsNumber, setFirstResultsNumber] = React.useState(0);
   const [moreResultsNumber, setMoreResultsNumber] = React.useState(0);
+  const [isSearching, setIsSearching] = React.useState(false);
   const [isSearchDone, setIsSearchDone] = React.useState(false);
   const currentViewport = document.documentElement.clientWidth;
 
+  function searchPromise(query, checkboxStatus) {
+    return new Promise((resolve) => {
+      resolve(filterMovies(initialMovies, query, checkboxStatus));
+    })
+  }
+
   function handleSearch(query, checkboxStatus) {
-    const searchResult = filterMovies(initialMovies, query, checkboxStatus);
-    setFilteredMovies(searchResult);
-    setIsSearchDone(true);
+    setIsSearchDone(false);
+    setIsSearching(true);
+    searchPromise(query, checkboxStatus)
+      .then((data) => {
+        setFilteredMovies(data);
+        console.log(data)
+        setIsSearchDone(true);
+      })
+      .catch(console.log)
+      .finally(() => {
+        setIsSearching(false);
+      })
   }
 
   // Устанавливаем количество карточек,
@@ -76,15 +93,21 @@ function Movies({
       <SearchForm
         onSearch={handleSearch}
       />
-      <MoviesCardList
-        movies={moviesToRender}
-        savedMoviesByCurrentUser={savedMoviesByCurrentUser}
-        onMovieSave={onMovieSave}
-        onMovieDelete={onMovieDelete}
-        isMoreButtonVisible={isMoreButtonVisible}
-        isSearchDone={isSearchDone}
-        onMoreButtonClick={handleMoreButtonClick}
-      />
+      {isSearching ? (
+        <Preloader />
+      ) : (
+        isSearchDone ? (
+          <MoviesCardList
+            movies={moviesToRender}
+            savedMoviesByCurrentUser={savedMoviesByCurrentUser}
+            onMovieSave={onMovieSave}
+            onMovieDelete={onMovieDelete}
+            isMoreButtonVisible={isMoreButtonVisible}
+            isSearchDone={isSearchDone}
+            onMoreButtonClick={handleMoreButtonClick}
+          />
+        ) : ("")
+      )}
     </section>
   );
 }
