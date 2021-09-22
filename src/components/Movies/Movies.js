@@ -5,7 +5,6 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 import moviesApi from '../../utils/MoviesApi';
 import filterMovies from '../../utils/filterMovies';
-import { moviesFromBeatfilm } from '../../utils/constants';
 
 function Movies({
   savedMoviesByCurrentUser,
@@ -80,34 +79,26 @@ function Movies({
     }
   }, [moviesToRender, filteredMovies]);
 
-  // Получаем все фильмы из API Beatfilm
-  React.useEffect(() => {
-    // получить все фильмы из API вместо мока
-    // TODO
-
-    setInitialMovies(moviesFromBeatfilm);
-  }, []);
-
   return (
     <section className="movies">
       <SearchForm
         onSearch={handleSearch}
       />
-      {isSearching ? (
-        <Preloader />
-      ) : (
-        isSearchDone ? (
-          <MoviesCardList
-            movies={moviesToRender}
-            savedMoviesByCurrentUser={savedMoviesByCurrentUser}
-            onMovieSave={onMovieSave}
-            onMovieDelete={onMovieDelete}
-            isMoreButtonVisible={isMoreButtonVisible}
-            isSearchDone={isSearchDone}
-            onMoreButtonClick={handleMoreButtonClick}
-          />
-        ) : ("")
-      )}
+      {isSearching
+        ? <Preloader />
+        : isSearchDone
+          ? moviesToRender.length > 0
+            ? <MoviesCardList
+                movies={moviesToRender}
+                savedMoviesByCurrentUser={savedMoviesByCurrentUser}
+                onMovieSave={onMovieSave}
+                onMovieDelete={onMovieDelete}
+                isMoreButtonVisible={isMoreButtonVisible}
+                onMoreButtonClick={handleMoreButtonClick}
+              />
+            : ("Ничего не найдено")
+          : ("")
+      }
     </section>
   );
 }
