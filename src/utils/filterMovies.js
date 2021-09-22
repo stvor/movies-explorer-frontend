@@ -3,7 +3,7 @@ function filterMovies(movies, query, checkboxStatus) {
   let result;
 
   if (checkboxStatus) {
-    moviesToFilter = moviesToFilter.filter((movie) => movie.duration <= 80);
+    moviesToFilter = moviesToFilter.filter((movie) => movie.duration <= 40);
   }
 
   result = moviesToFilter.filter((movie) => {
