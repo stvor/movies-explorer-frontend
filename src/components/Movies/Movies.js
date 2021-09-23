@@ -21,25 +21,23 @@ function Movies({
   const [isSearchDone, setIsSearchDone] = React.useState(false);
   const currentViewport = document.documentElement.clientWidth;
 
-  function searchPromise(query, checkboxStatus) {
-    return new Promise((resolve) => {
-      resolve(filterMovies(initialMovies, query, checkboxStatus));
-    })
-  }
-
   function handleSearch(query, checkboxStatus) {
-    setIsSearchDone(false);
-    setIsSearching(true);
-    searchPromise(query, checkboxStatus)
-      .then((data) => {
-        setFilteredMovies(data);
-        console.log(data)
-        setIsSearchDone(true);
-      })
-      .catch(console.log)
-      .finally(() => {
-        setIsSearching(false);
-      })
+    const initialMoviesInLocalStorage = JSON.parse(localStorage.getItem('initialMovies'));
+
+    if (!initialMoviesInLocalStorage) {
+      setIsSearching(true);
+      moviesApi.getMovies()
+        .then((data) => {
+          setInitialMovies(data);
+          localStorage.setItem('initialMovies', JSON.stringify(data));
+        })
+        .catch()
+        .finally(() => {
+          setIsSearching(false);
+        })
+    } else {
+      setInitialMovies(initialMoviesInLocalStorage);
+    }
   }
 
   // Устанавливаем количество карточек,
