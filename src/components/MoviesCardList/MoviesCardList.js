@@ -18,21 +18,15 @@ function MoviesCardList({
   return (
     <section className="movies-card-list">
       <ul className="movies-card-list__list">
-        {isSearchDone ? (
-          movies.length > 0 ? (
-            movies.map((movie) => (
-              <MoviesCard
-                key={movie.id || movie.movieId}
-                movie={movie}
-                savedMoviesByCurrentUser={savedMoviesByCurrentUser}
-                onMovieSave={onMovieSave}
-                onMovieDelete={onMovieDelete}
-              />
-            ))
-          ) : (
-            "Ничего не найдено"
-          )
-        ) : ("")}
+        {movies.map((movie) => (
+          <MoviesCard
+            key={movie.id || movie.movieId}
+            movie={movie}
+            savedMoviesByCurrentUser={savedMoviesByCurrentUser}
+            onMovieSave={onMovieSave}
+            onMovieDelete={onMovieDelete}
+          />
+        ))}
       </ul>
       <button
         className={moreButtonClassName}

@@ -21,7 +21,14 @@ function Movies({
   const [isSearchDone, setIsSearchDone] = React.useState(false);
   const currentViewport = document.documentElement.clientWidth;
 
+  const [query, setQuery] = React.useState('');
+  const [checkboxStatus, setCheckboxStatus] = React.useState(false);
+
   function handleSearch(query, checkboxStatus) {
+    setMoviesToRender([]);
+    setQuery(query);
+    setCheckboxStatus(checkboxStatus);
+
     const initialMoviesInLocalStorage = JSON.parse(localStorage.getItem('initialMovies'));
 
     if (!initialMoviesInLocalStorage) {
@@ -39,6 +46,13 @@ function Movies({
       setInitialMovies(initialMoviesInLocalStorage);
     }
   }
+
+  React.useEffect(() => {
+    if (initialMovies.length > 0) {
+      const searchResults = filterMovies(initialMovies, query, checkboxStatus);
+      setFilteredMovies(searchResults);
+    }
+  }, [initialMovies, query, checkboxStatus]);
 
   // Устанавливаем количество карточек,
   // которые отображаются сразу
@@ -58,11 +72,15 @@ function Movies({
 
   // Выбираем, сколько результатов поиска показать
   React.useEffect(() => {
-    if (filteredMovies.length > firstResultsNumber) {
-      setMoviesToRender(filteredMovies.slice(0, firstResultsNumber));
-      setIsMoreButtonVisible(true);
-    } else {
-      setMoviesToRender(filteredMovies);
+    if (filteredMovies.length > 0) {
+      if (filteredMovies.length > firstResultsNumber) {
+        setMoviesToRender(filteredMovies.slice(0, firstResultsNumber));
+        setIsMoreButtonVisible(true);
+        setIsSearchDone(true);
+      } else {
+        setMoviesToRender(filteredMovies);
+        setIsSearchDone(true);
+      }
     }
   }, [filteredMovies, firstResultsNumber]);
 
