@@ -7,9 +7,8 @@ function MoviesCardList({
   savedMoviesByCurrentUser,
   onMovieSave,
   onMovieDelete,
-  isMoreButtonVisible,
-  onMoreButtonClick,
-  isSearchDone
+  isMoreButtonVisible = false,
+  onMoreButtonClick
 }) {
   const moreButtonClassName = `movies-card-list__more-button ${
     isMoreButtonVisible && "movies-card-list__more-button_visible"
