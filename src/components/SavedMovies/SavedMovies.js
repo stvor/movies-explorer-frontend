@@ -1,7 +1,6 @@
 import React from 'react';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
-import Preloader from '../Preloader/Preloader';
 import filterMovies from '../../utils/filterMovies';
 import './SavedMovies.css';
 
@@ -23,9 +22,7 @@ function SavedMovies({ savedMoviesByCurrentUser, onMovieDelete }) {
     <SearchForm
       onSearch={handleSearch}
     />
-    {isSearching
-      ? <Preloader />
-      : isSearchDone
+    {isSearchDone
         ? filteredMovies.length > 0
           ? <MoviesCardList
               movies={filteredMovies}
