@@ -51,6 +51,7 @@ function Movies({
     if (initialMovies.length > 0) {
       const searchResults = filterMovies(initialMovies, query, checkboxStatus);
       setFilteredMovies(searchResults);
+      setIsSearchDone(true);
     }
   }, [initialMovies, query, checkboxStatus]);
 
@@ -68,7 +69,7 @@ function Movies({
       setFirstResultsNumber(12);
       setMoreResultsNumber(3);
     }
-  }, []);
+  }, [currentViewport]);
 
   // Выбираем, сколько результатов поиска показать
   React.useEffect(() => {
@@ -76,10 +77,8 @@ function Movies({
       if (filteredMovies.length > firstResultsNumber) {
         setMoviesToRender(filteredMovies.slice(0, firstResultsNumber));
         setIsMoreButtonVisible(true);
-        setIsSearchDone(true);
       } else {
         setMoviesToRender(filteredMovies);
-        setIsSearchDone(true);
       }
     }
   }, [filteredMovies, firstResultsNumber]);
