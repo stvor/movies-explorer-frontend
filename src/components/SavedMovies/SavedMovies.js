@@ -6,14 +6,11 @@ import './SavedMovies.css';
 
 function SavedMovies({ savedMoviesByCurrentUser, onMovieDelete }) {
   const [filteredMovies, setFilteredMovies] = React.useState([]);
-  const [isSearching, setIsSearching] = React.useState(false);
   const [isSearchDone, setIsSearchDone] = React.useState(false);
 
   function handleSearch(query, checkboxStatus) {
-    setIsSearching(true);
     const searchResult = filterMovies(savedMoviesByCurrentUser, query, checkboxStatus);
     setFilteredMovies(searchResult);
-    setIsSearching(false);
     setIsSearchDone(true);
   }
 
@@ -23,16 +20,16 @@ function SavedMovies({ savedMoviesByCurrentUser, onMovieDelete }) {
       onSearch={handleSearch}
     />
     {isSearchDone
-        ? filteredMovies.length > 0
-          ? <MoviesCardList
-              movies={filteredMovies}
-              onMovieDelete={onMovieDelete}
-            />
-          : ("Ничего не найдено")
-        : <MoviesCardList
-            movies={savedMoviesByCurrentUser}
+      ? filteredMovies.length > 0
+        ? <MoviesCardList
+            movies={filteredMovies}
             onMovieDelete={onMovieDelete}
           />
+        : ("Ничего не найдено")
+      : <MoviesCardList
+          movies={savedMoviesByCurrentUser}
+          onMovieDelete={onMovieDelete}
+        />
     }
   </section>
 
