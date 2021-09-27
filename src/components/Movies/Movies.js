@@ -112,7 +112,11 @@ function Movies({
                 isMoreButtonVisible={isMoreButtonVisible}
                 onMoreButtonClick={handleMoreButtonClick}
               />
-            : ("Ничего не найдено")
+            : (
+              <span className="movies__nothing-found">
+                Ничего не найдено
+              </span>
+            )
           : ("")
       }
     </section>
