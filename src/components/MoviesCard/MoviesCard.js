@@ -56,7 +56,7 @@ function MoviesCard({
       <a href={movie.trailerLink} target="_blank" rel="noreferrer">
         <img
           className="movies-card__cover"
-          // src={`${BEATFILM_URL}${movie.image.url}`}
+          src={`${BEATFILM_URL}${movie.image.url}`}
           alt="Обложка фильма"
         />
       </a>

@@ -26,7 +26,9 @@ function SavedMovies({ savedMoviesByCurrentUser, onMovieDelete }) {
             onMovieDelete={onMovieDelete}
           />
         : (
-          <span className="saved-movies__nothing-found">Ничего не найдено</span>
+          <span className="saved-movies__nothing-found">
+            Ничего не найдено
+          </span>
         )
       : <MoviesCardList
           movies={savedMoviesByCurrentUser}
