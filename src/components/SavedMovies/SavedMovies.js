@@ -8,11 +8,24 @@ function SavedMovies({ savedMoviesByCurrentUser, onMovieDelete }) {
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [isSearchDone, setIsSearchDone] = React.useState(false);
 
+  const [query, setQuery] = React.useState('');
+  const [checkboxStatus, setCheckboxStatus] = React.useState(false);
+
   function handleSearch(query, checkboxStatus) {
+    setQuery(query);
+    setCheckboxStatus(checkboxStatus);
     const searchResult = filterMovies(savedMoviesByCurrentUser, query, checkboxStatus);
     setFilteredMovies(searchResult);
     setIsSearchDone(true);
   }
+
+  // Делаем поиск заново, если поменялся массив сохраненных фильмов
+  React.useEffect(() => {
+    if (filteredMovies.length > 0) {
+      const searchResult = filterMovies(savedMoviesByCurrentUser, query, checkboxStatus);
+      setFilteredMovies(searchResult);
+    }
+  }, [savedMoviesByCurrentUser]);
 
   return (
   <section className="saved-movies">
