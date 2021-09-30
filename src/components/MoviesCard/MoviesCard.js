@@ -59,11 +59,22 @@ function MoviesCard({
         target="_blank"
         rel="noreferrer"
       >
-        <img
-          className="movies-card__cover"
-          src={`${BEATFILM_URL}${movie.image.url}`}
-          alt="Обложка фильма"
-        />
+        <Switch>
+          <Route path="/movies">
+            <img
+              className="movies-card__cover"
+              src={`${BEATFILM_URL}${movie.image.url}`}
+              alt="Обложка фильма"
+            />
+          </Route>
+          <Route path="/saved-movies">
+            <img
+              className="movies-card__cover"
+              src={movie.image}
+              alt="Обложка фильма"
+            />
+          </Route>
+        </Switch>
       </a>
     </li>
   );
