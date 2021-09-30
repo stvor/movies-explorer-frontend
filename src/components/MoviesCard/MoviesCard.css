@@ -63,6 +63,11 @@
   background-image: url("./../../images/delete-button.svg");
 }
 
+.movies-card__link {
+  display: flex;
+  flex-grow: 1;
+}
+
 .movies-card__cover {
   width: 100%;
   object-fit: cover;

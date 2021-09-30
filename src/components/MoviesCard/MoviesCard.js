@@ -53,7 +53,12 @@ function MoviesCard({
           </Route>
         </Switch>
       </div>
-      <a href={movie.trailerLink} target="_blank" rel="noreferrer">
+      <a
+        className="movies-card__link"
+        href={movie.trailerLink}
+        target="_blank"
+        rel="noreferrer"
+      >
         <img
           className="movies-card__cover"
           src={`${BEATFILM_URL}${movie.image.url}`}
