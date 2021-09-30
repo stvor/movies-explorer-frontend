@@ -108,8 +108,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  // url: 'http://api.moviest.nomoredomains.monster',
-  url: 'http://localhost:3000',
+  url: 'http://api.moviest.nomoredomains.monster'
 });
 
 export default mainApi;
