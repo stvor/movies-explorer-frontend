@@ -6,7 +6,7 @@ import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 function Profile({ onProfileEdit, onSignOut, isSending }) {
   const currentUser = React.useContext(CurrentUserContext);
   const [isEditing, setIsEditing] = React.useState(false);
-  const { values, handleChange, resetFrom, errors, isValid } = useFormWithValidation();
+  const { values, handleChange, resetFrom, isValid } = useFormWithValidation();
 
   const isDisabled = !isValid || isSending;
   const submitButtonClassName = `profile-form__submit ${
