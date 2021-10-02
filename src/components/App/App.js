@@ -75,6 +75,7 @@ function App() {
   function handleSignOut() {
     setIsLoggedIn(false);
     localStorage.removeItem('jwt');
+    localStorage.removeItem('initialMovies');
     history.push('/');
   }
 
