@@ -45,6 +45,7 @@ function Login({ onLogin, isSending }) {
             onChange={handleChange}
             id="email-input"
             type="email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
             name="email"
             placeholder="E-mail"
             className="form__input form__input_type_email"

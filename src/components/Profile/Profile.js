@@ -67,7 +67,8 @@ function Profile({ onProfileEdit, onSignOut, isSending }) {
             value={values.email || ''}
             onChange={handleChange}
             id="email-input"
-            type="text"
+            type="email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
             name="email"
             placeholder="E-mail"
             className={inputClassName}
