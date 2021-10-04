@@ -7,6 +7,8 @@ function SearchForm({ onSearch }) {
   const [checkboxStatus, setCheckboxStatus] = React.useState(false);
 
   function handleQueryChange(evt) {
+    const input = document.getElementById('queryInput');
+    input.setCustomValidity('');
     setQuery(evt.target.value);
   }
 
@@ -20,6 +22,13 @@ function SearchForm({ onSearch }) {
     onSearch(query, checkboxStatus);
   }
 
+  React.useEffect(() => {
+    if (!query) {
+      const input = document.getElementById('queryInput');
+      input.setCustomValidity('Нужно ввести ключевое слово');
+    }
+  }, [query]);
+
   return (
     <section className="search-form">
       <form
@@ -28,6 +37,7 @@ function SearchForm({ onSearch }) {
       >
         <div className="search-form__input-wrap">
           <input
+            id="queryInput"
             value={query || ''}
             onChange={handleQueryChange}
             className="search-form__input"
