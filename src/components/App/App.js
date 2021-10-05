@@ -51,6 +51,7 @@ function App() {
   }
 
   const [isLoginDataSending, setIsLoginDataSending] = React.useState(false);
+  const [loginRequestStatus, setLoginRequestStatus] = React.useState({});
   function handleLogin(loginData) {
     setIsLoginDataSending(true);
     mainApi.signIn(loginData)
@@ -60,7 +61,22 @@ function App() {
         history.push('/movies');
       })
       .catch(err => {
-        console.log(err)
+        if (err.statusCode === 401) {
+          setLoginRequestStatus({
+            type: 'error',
+            text: 'Вы ввели неправильный логин или пароль.'
+          });
+        } else if (err.statusCode === 400) {
+          setLoginRequestStatus({
+            type: 'error',
+            text: 'При авторизации произошла ошибка. Переданный токен некорректен.'
+          });
+        } else {
+          setLoginRequestStatus({
+            type: 'error',
+            text: 'При авторизации произошла ошибка.'
+          });
+        }
       })
       .finally(() => {
         setIsLoginDataSending(false);
@@ -191,6 +207,7 @@ function App() {
               <Login
                 onLogin={handleLogin}
                 isSending={isLoginDataSending}
+                requestStatus={loginRequestStatus}
               />
             </Route>
             <Route path="/signup">

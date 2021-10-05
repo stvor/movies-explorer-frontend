@@ -4,12 +4,13 @@ import './Login.css';
 import Logo from '../../images/logo.svg';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 
-function Login({ onLogin, isSending }) {
+function Login({ onLogin, isSending, requestStatus: { type, text } }) {
   const { values, handleChange, resetFrom, errors, isValid } = useFormWithValidation();
   const isDisabled = !isValid || isSending;
   const submitButtonClassName = `form__submit ${
     isDisabled && "form__submit_inactive"
   }`;
+  const apiFeedbackClassName = `form__api-feedback form__api-feedback_type_${type}`;
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -72,6 +73,10 @@ function Login({ onLogin, isSending }) {
             {errors.password || ''}
           </span>
         </label>
+
+        <span
+          className={apiFeedbackClassName}
+        >{text}</span>
 
         <button
           type="submit"
