@@ -22,6 +22,7 @@ function App() {
   const history = useHistory();
 
   const [isRegisterDataSending, setIsRegisterDataSending] = React.useState(false);
+  const [registerRequestStatus, setRegisterRequestStatus] = React.useState({});
   function handleRegister(registerData) {
     setIsRegisterDataSending(true);
     mainApi.signUp(registerData)
@@ -32,7 +33,17 @@ function App() {
         });
       })
       .catch(err => {
-        console.log(err)
+        if (err.statusCode === 409) {
+          setRegisterRequestStatus({
+            type: 'error',
+            text: 'Пользователь с таким email уже существует.'
+          });
+        } else {
+          setRegisterRequestStatus({
+            type: 'error',
+            text: 'При регистрации пользователя произошла ошибка.'
+          });
+        }
       })
       .finally(() => {
         setIsRegisterDataSending(false);
@@ -186,6 +197,7 @@ function App() {
               <Register
                 onRegister={handleRegister}
                 isSending={isRegisterDataSending}
+                requestStatus={registerRequestStatus}
               />
             </Route>
             <Route path="*">

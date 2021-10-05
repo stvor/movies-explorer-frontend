@@ -10,7 +10,10 @@ class MainApi {
       return res.json();
     }
 
-    return Promise.reject(new Error(`Ошибка, код ${res.status}`))
+    const err = new Error(`Ошибка, код ${res.status}`);
+    err.statusCode = res.status;
+
+    return Promise.reject(err)
   }
 
   signUp({ email, name, password }) {
