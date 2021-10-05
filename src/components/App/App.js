@@ -84,15 +84,32 @@ function App() {
   }
 
   const [isProfileDataSending, setIsProfileDataSending] = React.useState(false);
+  const [profileRequestStatus, setProfileRequestStatus] = React.useState({});
   function handleProfileEdit(userData) {
+    setProfileRequestStatus({});
     setIsProfileDataSending(true);
     const jwt = localStorage.getItem('jwt');
     mainApi.updateUser({ userData, jwt })
       .then((newUserData) => {
         setCurrentUser(newUserData);
+        setProfileRequestStatus({
+          type: 'success',
+          text: 'Профиль обновлён.'
+        });
+
       })
       .catch(err => {
-        console.log(err)
+        if (err.statusCode === 409) {
+          setProfileRequestStatus({
+            type: 'error',
+            text: 'Пользователь с таким email уже существует.'
+          });
+        } else {
+          setProfileRequestStatus({
+            type: 'error',
+            text: 'При обновлении профиля произошла ошибка.'
+          });
+        }
       })
       .finally(() => {
         setIsProfileDataSending(false);
@@ -202,6 +219,7 @@ function App() {
               onProfileEdit={handleProfileEdit}
               onSignOut={handleSignOut}
               isSending={isProfileDataSending}
+              requestStatus={profileRequestStatus}
             />
             <Route path="/signin">
               <Login
