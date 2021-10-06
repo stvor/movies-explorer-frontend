@@ -88,6 +88,22 @@
   opacity: 0.8;
 }
 
+.form__api-feedback {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+}
+
+.form__api-feedback_type_error {
+  color: #FF004C;
+}
+
+.form__api-feedback_type_success {
+  color: #2BE080;
+}
+
 .form__sign-in-wrap {
   margin-top: 15px;
   display: flex;
