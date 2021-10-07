@@ -41,6 +41,7 @@
 
 .profile-form__label:last-of-type {
   border-bottom: none;
+  margin-bottom: 204px;
 }
 
 .profile-form__input {
@@ -64,7 +65,6 @@
 }
 
 .profile-form__submit {
-  margin-top: 204px;
   height: 50px;
   border: none;
   background-color: #FF6838;
@@ -87,6 +87,7 @@
 }
 
 .profile-form__api-feedback {
+  margin-bottom: 20px;
   font-style: normal;
   font-weight: normal;
   font-size: 11px;
@@ -103,7 +104,6 @@
 }
 
 .profile-form__edit {
-  margin-top: 204px;
   padding: 0;
   border: none;
   background-color: transparent;

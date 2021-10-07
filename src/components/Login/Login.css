@@ -31,6 +31,10 @@
   flex-direction: column;
 }
 
+.form__label:last-of-type {
+  margin-bottom: 130px;
+}
+
 .form__label-text {
   padding-bottom: 5px;
   font-style: normal;
@@ -66,7 +70,6 @@
 }
 
 .form__submit {
-  margin-top: 130px;
   height: 50px;
   border: none;
   background-color: #FF6838;
@@ -84,6 +87,7 @@
 }
 
 .form__api-feedback {
+  margin-bottom: 20px;
   font-style: normal;
   font-weight: normal;
   font-size: 11px;
@@ -144,8 +148,11 @@
     padding: 50px 0 80px;
   }
 
+  .form__label:last-of-type {
+    margin-bottom: 50px;
+  }
+
   .form__submit {
-    margin-top: 50px;
     font-size: 12px;
     line-height: 15px;
   }
