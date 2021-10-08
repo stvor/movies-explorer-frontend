@@ -7,12 +7,13 @@
 
 .movies-card-list__list {
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(3, 1fr);
   row-gap: 30px;
   column-gap: 24px;
   list-style-type: none;
   margin: 0;
   padding: 0;
+  padding-bottom: 50px;
 }
 
 .movies-card-list__more-button {
@@ -22,12 +23,17 @@
   width: 320px;
   height: 36px;
   padding: 0;
-  margin: 80px auto;
+  margin: 30px auto 80px;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
   color: #000000;
+  display: none;
+}
+
+.movies-card-list__more-button_visible {
+  display: block;
 }
 
 .movies-card-list__more-button:hover {
@@ -41,7 +47,7 @@
   }
 
   .movies-card-list__list {
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(2, 1fr);
     row-gap: 36px;
     column-gap: 30px;
   }
@@ -53,7 +59,7 @@
   }
 
   .movies-card-list__list {
-    grid-template-columns: repeat(1, auto);
+    grid-template-columns: repeat(1, 1fr);
     row-gap: 16px;
   }
 

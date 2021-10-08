@@ -24,7 +24,7 @@ function Navigation({ isLoggedIn, isHeaderColored }) {
             <Link className="navigation__user-profile" to="/profile">Аккаунт</Link>
           </div>
 
-          <button className={`navigation__menu-open ${isHeaderColored ? "navigation__menu-open_white" : ""}`} onClick={handleMenuOpen}></button>
+          <button className={`navigation__menu-open ${isHeaderColored ? "navigation__menu-open_white" : ""}`} onClick={handleMenuOpen} type="button"></button>
         </>
       ) : (
         <>
@@ -35,7 +35,7 @@ function Navigation({ isLoggedIn, isHeaderColored }) {
 
       <div className={`navigation__mobile-menu mobile-menu ${isMenuOpen ? "mobile-menu_is-open" : ""}`}>
         <div className="mobile-menu__links">
-          <button className="mobile-menu__close" onClick={handleMenuClose}></button>
+          <button className="mobile-menu__close" onClick={handleMenuClose} type="button"></button>
           <NavLink className="mobile-menu__site-link" activeClassName="mobile-menu__site-link_active" exact to="/" onClick={handleMenuClose}>Главная</NavLink>
           <NavLink className="mobile-menu__site-link" activeClassName="mobile-menu__site-link_active" to="/movies" onClick={handleMenuClose}>Фильмы</NavLink>
           <NavLink className="mobile-menu__site-link" activeClassName="mobile-menu__site-link_active" to="/saved-movies" onClick={handleMenuClose}>Сохранённые фильмы</NavLink>

@@ -1,0 +1,13 @@
+.saved-movies {
+  flex-grow: 1;
+}
+
+.saved-movies__nothing-found {
+  display: block;
+  margin: 20px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 42px;
+  text-align: center;
+}
