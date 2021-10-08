@@ -78,9 +78,11 @@ function Profile({ onProfileEdit, onSignOut, isSending, requestStatus: { type, t
           />
         </label>
 
-        <span
-              className={apiFeedbackClassName}
-            >{text}</span>
+        {!isEditing && (
+          <span
+            className={apiFeedbackClassName}
+          >{text}</span>
+        )}
 
         {isEditing ? (
           <button
