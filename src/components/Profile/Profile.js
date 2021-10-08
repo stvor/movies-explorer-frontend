@@ -1,24 +1,106 @@
 import React from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Profile.css';
+import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 
-function Profile() {
+function Profile({ onProfileEdit, onSignOut, isSending, requestStatus: { type, text } }) {
+  const currentUser = React.useContext(CurrentUserContext);
+  const [isEditing, setIsEditing] = React.useState(false);
+  const { values, handleChange, resetFrom, isValid } = useFormWithValidation();
+
+  const isDisabled = !isValid || isSending;
+  const submitButtonClassName = `profile-form__submit ${
+    isDisabled && "profile-form__submit_inactive"
+  }`;
+  const inputClassName = `profile-form__input ${
+    !isEditing && "profile-form__input_disabled"
+  }`;
+  const apiFeedbackClassName = `profile-form__api-feedback profile-form__api-feedback_type_${type}`;
+
+  function handleEditClick() {
+    resetFrom(currentUser, {}, false);
+    setIsEditing(true);
+  }
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    setIsEditing(false);
+    onProfileEdit(values);
+  }
+
+  React.useEffect(() => {
+    if (currentUser) {
+      resetFrom(currentUser, {}, false);
+    }
+  }, [currentUser, resetFrom]);
+
+
   return (
     <section className="profile">
-      <form className="profile-form" name="login" action="#" >
-        <h1 className="profile-form__title">Привет, Виталий!</h1>
+      <form
+        onSubmit={handleSubmit}
+        className="profile-form"
+        name="login"
+        action="#"
+      >
+        <h1 className="profile-form__title">Привет, {currentUser.name}!</h1>
 
         <label className="profile-form__label">
           <span className="profile-form__label-text">Имя</span>
-          <input id="name-input" type="text" name="name" placeholder="Имя" className="profile-form__input profile-form__input_type_name" minLength="2" maxLength="30" required />
+          <input
+            value={values.name || ''}
+            onChange={handleChange}
+            id="name-input"
+            type="text"
+            name="name"
+            placeholder="Имя"
+            className={inputClassName}
+            minLength="2"
+            maxLength="30"
+            required
+            disabled={!isEditing}
+          />
         </label>
 
         <label className="profile-form__label">
           <span className="profile-form__label-text">E-mail</span>
-          <input id="email-input" type="text" name="email" placeholder="E-mail" className="profile-form__input profile-form__input_type_email" required />
+          <input
+            value={values.email || ''}
+            onChange={handleChange}
+            id="email-input"
+            type="email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            name="email"
+            placeholder="E-mail"
+            className={inputClassName}
+            required
+            disabled={!isEditing}
+          />
         </label>
 
-        <button type="submit" className="profile-form__submit">Редактировать</button>
-        <button className="profile__logout">Выйти из аккаунта</button>
+        <span
+              className={apiFeedbackClassName}
+            >{text}</span>
+
+        {isEditing ? (
+          <button
+            type="submit"
+            className={submitButtonClassName}
+          >Сохранить</button>
+        ) : (
+          <>
+            <button
+              onClick={handleEditClick}
+              className="profile-form__edit"
+              type="button"
+            >Редактировать</button>
+            <button
+              onClick={onSignOut}
+              className="profile__logout"
+              type="button"
+            >Выйти из аккаунта</button>
+          </>
+        )}
       </form>
     </section>
   );

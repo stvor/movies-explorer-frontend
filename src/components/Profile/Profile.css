@@ -41,6 +41,7 @@
 
 .profile-form__label:last-of-type {
   border-bottom: none;
+  margin-bottom: 204px;
 }
 
 .profile-form__input {
@@ -59,8 +60,50 @@
   outline: none;
 }
 
+.profile-form__input_disabled {
+  background-color: transparent;
+}
+
 .profile-form__submit {
-  margin-top: 204px;
+  height: 50px;
+  border: none;
+  background-color: #FF6838;
+  border-radius: 3px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FFFFFF;
+}
+
+.profile-form__submit_inactive {
+  background-color: #F8F8F8;
+  color: #C2C2C2;
+}
+
+.profile-form__submit:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.profile-form__api-feedback {
+  margin-bottom: 20px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+}
+
+.profile-form__api-feedback_type_error {
+  color: #FF004C;
+}
+
+.profile-form__api-feedback_type_success {
+  color: #2BE080;
+}
+
+.profile-form__edit {
   padding: 0;
   border: none;
   background-color: transparent;
@@ -71,7 +114,7 @@
   color: #000000;
 }
 
-.profile-form__submit:hover {
+.profile-form__edit:hover {
   cursor: pointer;
   opacity: 0.8;
 }
@@ -103,6 +146,11 @@
   }
 
   .profile-form__submit {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .profile-form__edit {
     font-size: 12px;
     line-height: 15px;
   }
