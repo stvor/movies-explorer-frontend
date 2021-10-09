@@ -3,11 +3,13 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 .profile-form {
   width: 100%;
   max-width: 410px;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
 }
@@ -41,7 +43,7 @@
 
 .profile-form__label:last-of-type {
   border-bottom: none;
-  margin-bottom: 204px;
+  margin-bottom: auto;
 }
 
 .profile-form__input {
