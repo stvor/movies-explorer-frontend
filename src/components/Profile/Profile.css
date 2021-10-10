@@ -67,7 +67,7 @@
 }
 
 .profile-form__submit {
-  height: 50px;
+  min-height: 50px;
   border: none;
   background-color: #FF6838;
   border-radius: 3px;
