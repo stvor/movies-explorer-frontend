@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -222,18 +222,22 @@ function App() {
               requestStatus={profileRequestStatus}
             />
             <Route path="/signin">
-              <Login
-                onLogin={handleLogin}
-                isSending={isLoginDataSending}
-                requestStatus={loginRequestStatus}
-              />
+              {isLoggedIn ? <Redirect to="/" /> :
+                <Login
+                  onLogin={handleLogin}
+                  isSending={isLoginDataSending}
+                  requestStatus={loginRequestStatus}
+                />
+              }
             </Route>
             <Route path="/signup">
-              <Register
-                onRegister={handleRegister}
-                isSending={isRegisterDataSending}
-                requestStatus={registerRequestStatus}
-              />
+              {isLoggedIn ? <Redirect to="/" /> :
+                <Register
+                  onRegister={handleRegister}
+                  isSending={isRegisterDataSending}
+                  requestStatus={registerRequestStatus}
+                />
+              }
             </Route>
             <Route path="*">
               <PageNotFound />
