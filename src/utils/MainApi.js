@@ -1,4 +1,4 @@
-import { BEATFILM_URL } from '../utils/constants';
+import { BEATFILM_URL, BASE_URL } from '../utils/constants';
 
 class MainApi {
   constructor({ url }) {
@@ -111,7 +111,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  url: 'https://api.moviest.nomoredomains.monster'
+  url: `${BASE_URL}`
 });
 
 export default mainApi;

@@ -56,8 +56,8 @@ function App() {
     setIsLoginDataSending(true);
     mainApi.signIn(loginData)
       .then(res => {
-        setIsLoggedIn(true);
         localStorage.setItem('jwt', res.token);
+        setIsLoggedIn(true);
         history.push('/movies');
       })
       .catch(err => {
