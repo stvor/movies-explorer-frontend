@@ -3,7 +3,23 @@ import { Link } from 'react-router-dom';
 import './Form.css';
 import Logo from '../../images/logo.svg';
 
-function Form({}) {
+function Form({
+  children,
+  formName,
+  titleText,
+  submitButtonText,
+  questionText,
+  linkPath,
+  linkText,
+  isSubmitDisabled,
+  onSubmit,
+  requestStatus: { type, text }
+}) {
+  const apiFeedbackClassName = `form__api-feedback form__api-feedback_type_${type}`;
+  const submitButtonClassName = `form__submit ${
+    isSubmitDisabled && "form__submit_inactive"
+  }`;
+
   return(
     <form
     onSubmit={onSubmit}
@@ -29,7 +45,7 @@ function Form({}) {
       <button
         type="submit"
         className={submitButtonClassName}
-        disabled={isDisabled}
+        disabled={isSubmitDisabled}
       >{submitButtonText}</button>
 
       <div className="form__sign-in-wrap">
