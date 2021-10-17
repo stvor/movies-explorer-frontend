@@ -1,16 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './Register.css';
-import Logo from '../../images/logo.svg';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
+import Form from '../Form/Form';
 
-function Register({ onRegister, isSending, requestStatus: { type, text } }) {
+function Register({ onRegister, isSending, requestStatus }) {
   const { values, handleChange, resetFrom, errors, isValid } = useFormWithValidation();
   const isDisabled = !isValid || isSending;
-  const submitButtonClassName = `form__submit ${
-    isDisabled && "form__submit_inactive"
-  }`;
-  const apiFeedbackClassName = `form__api-feedback form__api-feedback_type_${type}`;
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -23,21 +18,17 @@ function Register({ onRegister, isSending, requestStatus: { type, text } }) {
 
   return (
     <section className="register">
-      <form
-        onSubmit={handleSubmit}
-        className="form"
-        name="register"
-        action="#"
+      <Form
+          formName="register"
+          titleText="Добро пожаловать!"
+          submitButtonText="Зарегистрироваться"
+          questionText="Уже зарегистрированы? "
+          linkPath="/signin"
+          linkText="Войти"
+          isSubmitDisabled={isDisabled}
+          onSubmit={handleSubmit}
+          requestStatus={requestStatus}
       >
-        <Link to="/">
-          <img
-            className="form__logo"
-            src={Logo}
-            alt="Логотип сайта"
-          />
-        </Link>
-        <h1 className="form__title">Добро пожаловать!</h1>
-
         <label className="form__label">
           <span className="form__label-text">Имя</span>
           <input
@@ -91,21 +82,7 @@ function Register({ onRegister, isSending, requestStatus: { type, text } }) {
             {errors.password || ''}
           </span>
         </label>
-
-        <span
-          className={apiFeedbackClassName}
-        >{text}</span>
-
-        <button
-          type="submit"
-          className={submitButtonClassName}
-          disabled={isDisabled}
-        >Зарегистрироваться</button>
-
-        <div className="form__sign-in-wrap">
-          <p className="form__sign-in-question">Уже зарегистрированы? <Link className="form__sign-in-link" to="/signin">Войти</Link></p>
-        </div>
-      </form>
+      </Form>
     </section>
   );
 }
