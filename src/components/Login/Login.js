@@ -1,16 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './Login.css';
-import Logo from '../../images/logo.svg';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
+import Form from '../Form/Form';
 
-function Login({ onLogin, isSending, requestStatus: { type, text } }) {
+function Login({ onLogin, isSending, requestStatus }) {
   const { values, handleChange, resetFrom, errors, isValid } = useFormWithValidation();
   const isDisabled = !isValid || isSending;
-  const submitButtonClassName = `form__submit ${
-    isDisabled && "form__submit_inactive"
-  }`;
-  const apiFeedbackClassName = `form__api-feedback form__api-feedback_type_${type}`;
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -23,21 +18,17 @@ function Login({ onLogin, isSending, requestStatus: { type, text } }) {
 
   return (
     <section className="login">
-      <form
-        className="form"
+      <Form
+        formName="login"
+        titleText="Рады видеть!"
+        submitButtonText="Войти"
+        questionText="Ещё не зарегистрированы? "
+        linkPath="/signup"
+        linkText="Регистрация"
+        isSubmitDisabled={isDisabled}
         onSubmit={handleSubmit}
-        name="login"
-        action="#"
-        noValidate
+        requestStatus={requestStatus}
       >
-        <Link to="/">
-          <img
-            className="form__logo"
-            src={Logo}
-            alt="Логотип сайта"
-          />
-        </Link>
-        <h1 className="form__title">Рады видеть!</h1>
 
         <label className="form__label">
           <span className="form__label-text">E-mail</span>
@@ -73,21 +64,7 @@ function Login({ onLogin, isSending, requestStatus: { type, text } }) {
             {errors.password || ''}
           </span>
         </label>
-
-        <span
-          className={apiFeedbackClassName}
-        >{text}</span>
-
-        <button
-          type="submit"
-          className={submitButtonClassName}
-          disabled={isDisabled}
-        >Войти</button>
-
-        <div className="form__sign-in-wrap">
-          <p className="form__sign-in-question">Ещё не зарегистрированы? <Link className="form__sign-in-link" to="/signup">Регистрация</Link></p>
-        </div>
-      </form>
+      </Form>
     </section>
   );
 }

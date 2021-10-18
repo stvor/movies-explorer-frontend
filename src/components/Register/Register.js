@@ -19,15 +19,15 @@ function Register({ onRegister, isSending, requestStatus }) {
   return (
     <section className="register">
       <Form
-          formName="register"
-          titleText="Добро пожаловать!"
-          submitButtonText="Зарегистрироваться"
-          questionText="Уже зарегистрированы? "
-          linkPath="/signin"
-          linkText="Войти"
-          isSubmitDisabled={isDisabled}
-          onSubmit={handleSubmit}
-          requestStatus={requestStatus}
+        formName="register"
+        titleText="Добро пожаловать!"
+        submitButtonText="Зарегистрироваться"
+        questionText="Уже зарегистрированы? "
+        linkPath="/signin"
+        linkText="Войти"
+        isSubmitDisabled={isDisabled}
+        onSubmit={handleSubmit}
+        requestStatus={requestStatus}
       >
         <label className="form__label">
           <span className="form__label-text">Имя</span>
