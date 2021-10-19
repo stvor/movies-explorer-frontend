@@ -22,7 +22,7 @@ function Register({ onRegister, isSending, requestStatus }) {
         formName="register"
         titleText="Добро пожаловать!"
         submitButtonText="Зарегистрироваться"
-        questionText="Уже зарегистрированы? "
+        questionText="Уже зарегистрированы?"
         linkPath="/signin"
         linkText="Войти"
         isSubmitDisabled={isDisabled}

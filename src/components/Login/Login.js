@@ -22,7 +22,7 @@ function Login({ onLogin, isSending, requestStatus }) {
         formName="login"
         titleText="Рады видеть!"
         submitButtonText="Войти"
-        questionText="Ещё не зарегистрированы? "
+        questionText="Ещё не зарегистрированы?"
         linkPath="/signup"
         linkText="Регистрация"
         isSubmitDisabled={isDisabled}

@@ -49,7 +49,7 @@ function Form({
       >{submitButtonText}</button>
 
       <div className="form__sign-in-wrap">
-        <p className="form__sign-in-question">{questionText}
+        <p className="form__sign-in-question">{`${questionText} `}
         <Link className="form__sign-in-link" to={linkPath}>{linkText}</Link></p>
       </div>
     </form>
