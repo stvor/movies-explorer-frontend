@@ -1,6 +1,7 @@
 .form {
   width: 100%;
   max-width: 400px;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
 }
@@ -25,7 +26,7 @@
 }
 
 .form__label:last-of-type {
-  margin-bottom: 130px;
+  margin-bottom: auto;
 }
 
 .form__label-text {
@@ -63,7 +64,7 @@
 }
 
 .form__submit {
-  height: 50px;
+  min-height: 50px;
   border: none;
   background-color: #FF6838;
   border-radius: 3px;
@@ -139,10 +140,6 @@
   .form__title {
     text-align: center;
     padding: 50px 0 80px;
-  }
-
-  .form__label:last-of-type {
-    margin-bottom: 50px;
   }
 
   .form__submit {

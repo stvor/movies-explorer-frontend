@@ -36,12 +36,12 @@ function App() {
         if (err.statusCode === 409) {
           setRegisterRequestStatus({
             type: 'error',
-            text: 'Пользователь с таким email уже существует.'
+            text: 'Пользователь с таким email уже существует'
           });
         } else {
           setRegisterRequestStatus({
             type: 'error',
-            text: 'При регистрации пользователя произошла ошибка.'
+            text: 'При регистрации пользователя произошла ошибка'
           });
         }
       })
@@ -64,17 +64,17 @@ function App() {
         if (err.statusCode === 401) {
           setLoginRequestStatus({
             type: 'error',
-            text: 'Вы ввели неправильный логин или пароль.'
+            text: 'Вы ввели неправильный логин или пароль'
           });
         } else if (err.statusCode === 400) {
           setLoginRequestStatus({
             type: 'error',
-            text: 'При авторизации произошла ошибка. Переданный токен некорректен.'
+            text: 'При авторизации произошла ошибка. Переданный токен некорректен'
           });
         } else {
           setLoginRequestStatus({
             type: 'error',
-            text: 'При авторизации произошла ошибка.'
+            text: 'При авторизации произошла ошибка'
           });
         }
       })
@@ -102,12 +102,12 @@ function App() {
         if (err.statusCode === 409) {
           setProfileRequestStatus({
             type: 'error',
-            text: 'Пользователь с таким email уже существует.'
+            text: 'Пользователь с таким email уже существует'
           });
         } else {
           setProfileRequestStatus({
             type: 'error',
-            text: 'При обновлении профиля произошла ошибка.'
+            text: 'При обновлении профиля произошла ошибка'
           });
         }
       })
