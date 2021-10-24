@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -36,12 +36,12 @@ function App() {
         if (err.statusCode === 409) {
           setRegisterRequestStatus({
             type: 'error',
-            text: 'Пользователь с таким email уже существует.'
+            text: 'Пользователь с таким email уже существует'
           });
         } else {
           setRegisterRequestStatus({
             type: 'error',
-            text: 'При регистрации пользователя произошла ошибка.'
+            text: 'При регистрации пользователя произошла ошибка'
           });
         }
       })
@@ -56,25 +56,25 @@ function App() {
     setIsLoginDataSending(true);
     mainApi.signIn(loginData)
       .then(res => {
-        setIsLoggedIn(true);
         localStorage.setItem('jwt', res.token);
+        setIsLoggedIn(true);
         history.push('/movies');
       })
       .catch(err => {
         if (err.statusCode === 401) {
           setLoginRequestStatus({
             type: 'error',
-            text: 'Вы ввели неправильный логин или пароль.'
+            text: 'Вы ввели неправильный логин или пароль'
           });
         } else if (err.statusCode === 400) {
           setLoginRequestStatus({
             type: 'error',
-            text: 'При авторизации произошла ошибка. Переданный токен некорректен.'
+            text: 'При авторизации произошла ошибка. Переданный токен некорректен'
           });
         } else {
           setLoginRequestStatus({
             type: 'error',
-            text: 'При авторизации произошла ошибка.'
+            text: 'При авторизации произошла ошибка'
           });
         }
       })
@@ -102,12 +102,12 @@ function App() {
         if (err.statusCode === 409) {
           setProfileRequestStatus({
             type: 'error',
-            text: 'Пользователь с таким email уже существует.'
+            text: 'Пользователь с таким email уже существует'
           });
         } else {
           setProfileRequestStatus({
             type: 'error',
-            text: 'При обновлении профиля произошла ошибка.'
+            text: 'При обновлении профиля произошла ошибка'
           });
         }
       })
@@ -222,18 +222,22 @@ function App() {
               requestStatus={profileRequestStatus}
             />
             <Route path="/signin">
-              <Login
-                onLogin={handleLogin}
-                isSending={isLoginDataSending}
-                requestStatus={loginRequestStatus}
-              />
+              {isLoggedIn ? <Redirect to="/" /> :
+                <Login
+                  onLogin={handleLogin}
+                  isSending={isLoginDataSending}
+                  requestStatus={loginRequestStatus}
+                />
+              }
             </Route>
             <Route path="/signup">
-              <Register
-                onRegister={handleRegister}
-                isSending={isRegisterDataSending}
-                requestStatus={registerRequestStatus}
-              />
+              {isLoggedIn ? <Redirect to="/" /> :
+                <Register
+                  onRegister={handleRegister}
+                  isSending={isRegisterDataSending}
+                  requestStatus={registerRequestStatus}
+                />
+              }
             </Route>
             <Route path="*">
               <PageNotFound />
