@@ -88,6 +88,7 @@ function Profile({ onProfileEdit, onSignOut, isSending, requestStatus: { type, t
           <button
             type="submit"
             className={submitButtonClassName}
+            disabled={isDisabled}
           >Сохранить</button>
         ) : (
           <>
