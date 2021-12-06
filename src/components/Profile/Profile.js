@@ -6,6 +6,7 @@ import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 function Profile({ onProfileEdit, onSignOut, isSending, requestStatus: { type, text } }) {
   const currentUser = React.useContext(CurrentUserContext);
   const [isEditing, setIsEditing] = React.useState(false);
+  const [requestStatusText, setRequestStatusText] = React.useState('');
   const { values, handleChange, resetFrom, isValid } = useFormWithValidation();
 
   const isDisabled = !isValid || isSending;
@@ -20,6 +21,7 @@ function Profile({ onProfileEdit, onSignOut, isSending, requestStatus: { type, t
   function handleEditClick() {
     resetFrom(currentUser, {}, false);
     setIsEditing(true);
+    setRequestStatusText('');
   }
 
   function handleSubmit(evt) {
@@ -29,8 +31,15 @@ function Profile({ onProfileEdit, onSignOut, isSending, requestStatus: { type, t
   }
 
   React.useEffect(() => {
+    if (text) {
+      setRequestStatusText(text);
+    }
+  }, [text]);
+
+  React.useEffect(() => {
     if (currentUser) {
       resetFrom(currentUser, {}, false);
+      setRequestStatusText('');
     }
   }, [currentUser, resetFrom]);
 
@@ -81,7 +90,7 @@ function Profile({ onProfileEdit, onSignOut, isSending, requestStatus: { type, t
         {!isEditing && (
           <span
             className={apiFeedbackClassName}
-          >{text}</span>
+          >{requestStatusText}</span>
         )}
 
         {isEditing ? (
