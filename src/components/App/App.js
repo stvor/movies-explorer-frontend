@@ -96,7 +96,6 @@ function App() {
           type: 'success',
           text: 'Профиль обновлён.'
         });
-
       })
       .catch(err => {
         if (err.statusCode === 409) {
