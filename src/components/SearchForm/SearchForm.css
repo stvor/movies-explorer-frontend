@@ -59,6 +59,12 @@
   opacity: 0.8;
 }
 
+.search-form__hint {
+  margin: 15px 0;
+  padding: 0 22px;
+  font-size: 13px;
+}
+
 @media screen and (max-width: 768px) {
   .search-form {
     padding: 0 30px;
