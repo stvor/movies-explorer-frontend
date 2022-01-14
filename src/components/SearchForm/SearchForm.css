@@ -12,6 +12,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+  position: relative;
 }
 
 .search-form__input {
@@ -60,9 +61,10 @@
 }
 
 .search-form__hint {
-  margin: 15px 0;
-  padding: 0 22px;
-  font-size: 13px;
+  position: absolute;
+  left: 22px;
+  bottom: -25px;
+  font-size: 12px;
 }
 
 @media screen and (max-width: 768px) {

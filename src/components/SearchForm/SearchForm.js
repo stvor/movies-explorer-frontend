@@ -50,10 +50,10 @@ function SearchForm({ onSearch }) {
             className="search-form__submit"
             type="submit"
           >Найти</button>
+          <span
+              className="search-form__hint"
+            >Например: боб марли</span>
         </div>
-        <p
-            className="search-form__hint"
-          >Например: боб марли</p>
         <div className="search-form__filter">
           <FilterCheckbox
             checkboxStatus={checkboxStatus}
