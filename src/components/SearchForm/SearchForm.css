@@ -85,4 +85,9 @@
   .search-form__filter {
     padding: 44px 0 40px;
   }
+
+  .search-form__hint {
+    left: 16px;
+    font-size: 12px;
+  }
 }
