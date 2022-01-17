@@ -22,6 +22,11 @@ function SearchForm({ onSearch }) {
     onSearch(query, checkboxStatus);
   }
 
+  function handleSearchHintClick() {
+    setQuery('боб марли');
+    onSearch('боб марли', checkboxStatus);
+  }
+
   React.useEffect(() => {
     if (!query) {
       const input = document.getElementById('queryInput');
@@ -52,6 +57,7 @@ function SearchForm({ onSearch }) {
           >Найти</button>
           <span
               className="search-form__hint"
+              onClick={handleSearchHintClick}
             >Например: боб марли</span>
         </div>
         <div className="search-form__filter">
