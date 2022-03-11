@@ -23,8 +23,8 @@ function SearchForm({ onSearch }) {
   }
 
   function handleSearchHintClick() {
-    setQuery('боб марли');
-    onSearch('боб марли', checkboxStatus);
+    setQuery('Боб Марли');
+    onSearch('Боб Марли', checkboxStatus);
   }
 
   React.useEffect(() => {
@@ -58,7 +58,7 @@ function SearchForm({ onSearch }) {
           <span
               className="search-form__hint"
               onClick={handleSearchHintClick}
-            >Например: боб марли</span>
+            >Например: <span className="search-form__hint-link">Боб Марли</span></span>
         </div>
         <div className="search-form__filter">
           <FilterCheckbox

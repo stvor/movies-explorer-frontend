@@ -67,6 +67,12 @@
   font-size: 12px;
 }
 
+.search-form__hint-link {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
   .search-form {
     padding: 0 30px;
