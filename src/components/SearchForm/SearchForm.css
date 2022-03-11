@@ -12,6 +12,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+  position: relative;
 }
 
 .search-form__input {
@@ -59,6 +60,19 @@
   opacity: 0.8;
 }
 
+.search-form__hint {
+  position: absolute;
+  left: 22px;
+  bottom: -25px;
+  font-size: 12px;
+}
+
+.search-form__hint-link {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
   .search-form {
     padding: 0 30px;
@@ -76,5 +90,10 @@
 
   .search-form__filter {
     padding: 44px 0 40px;
+  }
+
+  .search-form__hint {
+    left: 16px;
+    font-size: 12px;
   }
 }
