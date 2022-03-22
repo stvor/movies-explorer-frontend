@@ -23,7 +23,7 @@ function App() {
 
   const [isRegisterDataSending, setIsRegisterDataSending] = React.useState(false);
   const [registerRequestStatus, setRegisterRequestStatus] = React.useState({});
-  function handleRegister(registerData) {
+  function handleRegister(registerData: { name: string, email: string, password: string }) {
     setIsRegisterDataSending(true);
     mainApi.signUp(registerData)
       .then(() => {
@@ -52,7 +52,7 @@ function App() {
 
   const [isLoginDataSending, setIsLoginDataSending] = React.useState(false);
   const [loginRequestStatus, setLoginRequestStatus] = React.useState({});
-  function handleLogin(loginData) {
+  function handleLogin(loginData: { email: string, password: string }) {
     setIsLoginDataSending(true);
     mainApi.signIn(loginData)
       .then(res => {
@@ -85,7 +85,7 @@ function App() {
 
   const [isProfileDataSending, setIsProfileDataSending] = React.useState(false);
   const [profileRequestStatus, setProfileRequestStatus] = React.useState({});
-  function handleProfileEdit(userData) {
+  function handleProfileEdit(userData: { name: string, email: string }) {
     setProfileRequestStatus({});
     setIsProfileDataSending(true);
     const jwt = localStorage.getItem('jwt');
