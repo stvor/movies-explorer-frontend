@@ -122,7 +122,26 @@ function App() {
     history.push('/');
   }
 
-  function handleMovieSave(movie) {
+  type Movie = {
+    country: string,
+    director: string,
+    duration: number,
+    year: string,
+    description: string,
+    image: string,
+    trailer: string,
+    thumbnail: string,
+    owner: {
+      name: string,
+      email: string,
+      password: string
+    },
+    movieId: number,
+    nameRU: string,
+    nameEN: string
+  };
+
+  function handleMovieSave(movie: Movie) {
     const jwt = localStorage.getItem('jwt');
     mainApi.saveMovie({ movie, jwt })
       .then((newSavedMovie) => {
@@ -136,7 +155,7 @@ function App() {
       })
   }
 
-  function handleMovieDelete(movie) {
+  function handleMovieDelete(movie: Movie) {
     const jwt = localStorage.getItem('jwt');
     mainApi.deleteMovie({ movie, jwt })
       .then(() => {
