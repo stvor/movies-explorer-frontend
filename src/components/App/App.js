@@ -23,7 +23,7 @@ function App() {
 
   const [isRegisterDataSending, setIsRegisterDataSending] = React.useState(false);
   const [registerRequestStatus, setRegisterRequestStatus] = React.useState({});
-  function handleRegister(registerData: { name: string, email: string, password: string }) {
+  function handleRegister(registerData) {
     setIsRegisterDataSending(true);
     mainApi.signUp(registerData)
       .then(() => {
@@ -52,7 +52,7 @@ function App() {
 
   const [isLoginDataSending, setIsLoginDataSending] = React.useState(false);
   const [loginRequestStatus, setLoginRequestStatus] = React.useState({});
-  function handleLogin(loginData: { email: string, password: string }) {
+  function handleLogin(loginData) {
     setIsLoginDataSending(true);
     mainApi.signIn(loginData)
       .then(res => {
@@ -85,7 +85,7 @@ function App() {
 
   const [isProfileDataSending, setIsProfileDataSending] = React.useState(false);
   const [profileRequestStatus, setProfileRequestStatus] = React.useState({});
-  function handleProfileEdit(userData: { name: string, email: string }) {
+  function handleProfileEdit(userData) {
     setProfileRequestStatus({});
     setIsProfileDataSending(true);
     const jwt = localStorage.getItem('jwt');
@@ -122,26 +122,7 @@ function App() {
     history.push('/');
   }
 
-  type Movie = {
-    country: string,
-    director: string,
-    duration: number,
-    year: string,
-    description: string,
-    image: string,
-    trailer: string,
-    thumbnail: string,
-    owner: {
-      name: string,
-      email: string,
-      password: string
-    },
-    movieId: number,
-    nameRU: string,
-    nameEN: string
-  };
-
-  function handleMovieSave(movie: Movie) {
+  function handleMovieSave(movie) {
     const jwt = localStorage.getItem('jwt');
     mainApi.saveMovie({ movie, jwt })
       .then((newSavedMovie) => {
@@ -155,7 +136,7 @@ function App() {
       })
   }
 
-  function handleMovieDelete(movie: Movie) {
+  function handleMovieDelete(movie) {
     const jwt = localStorage.getItem('jwt');
     mainApi.deleteMovie({ movie, jwt })
       .then(() => {
