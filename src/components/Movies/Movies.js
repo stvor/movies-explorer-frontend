@@ -24,7 +24,7 @@ function Movies({
   const [query, setQuery] = React.useState('');
   const [checkboxStatus, setCheckboxStatus] = React.useState(false);
 
-  function handleSearch(query: string, checkboxStatus: boolean) {
+  function handleSearch(query, checkboxStatus) {
     setMoviesToRender([]);
     setQuery(query);
     setCheckboxStatus(checkboxStatus);
