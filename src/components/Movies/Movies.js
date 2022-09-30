@@ -28,8 +28,13 @@ function Movies({
     setMoviesToRender([]);
     setQuery(query);
     setCheckboxStatus(checkboxStatus);
+    let initialMoviesInLocalStorage;
 
-    const initialMoviesInLocalStorage = JSON.parse(localStorage.getItem('initialMovies'));
+    try {
+      initialMoviesInLocalStorage = JSON.parse(localStorage.getItem('initialMovies'));
+    } catch (error) {
+      console.log(error);
+    }
 
     if (!initialMoviesInLocalStorage) {
       setIsSearching(true);
