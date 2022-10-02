@@ -131,9 +131,7 @@ function App() {
           ...movies
         ]);
       })
-      .catch(err => {
-        console.log(err)
-      })
+      .catch(console.log);
   }
 
   function handleMovieDelete(movie) {
@@ -142,9 +140,7 @@ function App() {
       .then(() => {
         setSavedMoviesByCurrentUser((movies) => movies.filter((m) => m._id !== movie._id));
       })
-      .catch(err => {
-        console.log(err)
-      })
+      .catch(console.log);
   }
 
   React.useEffect(() => {
@@ -156,9 +152,7 @@ function App() {
             setIsLoggedIn(true);
           }
         })
-        .catch(err => {
-          console.log(err)
-        })
+        .catch(console.log);
     }
   }, []);
 
@@ -169,9 +163,7 @@ function App() {
         .then((data) => {
           setSavedMoviesByCurrentUser(data.filter((i) => i.owner === currentUser._id));
         })
-        .catch(err => {
-          console.log(err)
-        })
+        .catch(console.log);
     }
   }, [currentUser]);
 
@@ -182,9 +174,7 @@ function App() {
         .then((userData) => {
           setCurrentUser(userData);
         })
-        .catch(err => {
-          console.log(err)
-        });
+        .catch(console.log);
     }
   }, [isLoggedIn]);
 

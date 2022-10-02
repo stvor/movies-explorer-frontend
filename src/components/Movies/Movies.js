@@ -43,9 +43,7 @@ function Movies({
           setInitialMovies(data);
           localStorage.setItem('initialMovies', JSON.stringify(data));
         })
-        .catch(err => {
-          console.log(err)
-        })
+        .catch(console.log)
         .finally(() => {
           setIsSearching(false);
         })
